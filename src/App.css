@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-x: hidden;
+}
+
+.container > main {
+  flex: 1;
+}
+
+.container-login {
+  min-height: 100vh;
+}
+
+.container-login > main {
+  flex: 1;
+}

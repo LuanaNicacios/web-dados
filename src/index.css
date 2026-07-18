@@ -1,0 +1,49 @@
+@import url(
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+);
+
+/* Faz padding e borda entrarem no tamanho total do elemento */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  font-family: 'Inter', Arial, sans-serif;
+  color: #0f172a;
+
+  background-color: #f4f9ff;
+  background-image: url('./assets/background-home.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+}

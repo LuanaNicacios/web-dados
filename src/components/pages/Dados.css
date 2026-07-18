@@ -1,0 +1,720 @@
+/* =========================
+   PÁGINA
+========================= */
+
+.dados-page {
+  width: 100%;
+  flex: 1;
+
+  background-color: transparent;
+}
+
+.dados-container {
+  width: 100%;
+  max-width: 1120px;
+
+  margin: 0 auto;
+  padding: 58px 24px 80px;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.dados-header {
+  margin-bottom: 38px;
+
+  text-align: center;
+}
+
+.dados-titulo {
+  margin: 0;
+
+  color: #102a4c;
+
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.2px;
+}
+
+.dados-subtitulo {
+  max-width: 600px;
+
+  margin: 13px auto 0;
+
+  color: #64748b;
+
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.dados-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 28px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.dados-card {
+  min-width: 0;
+
+  padding: 28px;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(255, 255, 255, 0.86);
+
+  border: 1px solid rgba(191, 219, 254, 0.7);
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 28px rgba(15, 23, 42, 0.06),
+    0 18px 40px rgba(37, 99, 235, 0.06);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* =========================
+   CABEÇALHO DOS CARDS
+========================= */
+
+.card-cabecalho {
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+
+  text-align: left;
+}
+
+.card-icone {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+
+  background: linear-gradient(
+    135deg,
+    #dbeafe,
+    #eff6ff
+  );
+
+  border-radius: 13px;
+
+  font-size: 20px;
+}
+
+.card-cabecalho h2 {
+  margin: 0 0 6px;
+
+  color: #102a4c;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.card-cabecalho p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+
+/* =========================
+   ÁREA DE UPLOAD
+========================= */
+
+.upload-zona {
+  width: 100%;
+  min-height: 235px;
+
+  padding: 32px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #64748b;
+  background-color: rgba(248, 251, 255, 0.85);
+
+  border: 2px dashed #bfd0e6;
+  border-radius: 16px;
+
+  cursor: pointer;
+  text-align: center;
+
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.upload-zona:hover,
+.upload-zona.arrastando {
+  background-color: #f0f6ff;
+  border-color: #2563eb;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 26px rgba(37, 99, 235, 0.1);
+}
+
+.upload-zona:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.25);
+  outline-offset: 4px;
+}
+
+.upload-icone {
+  width: 62px;
+  height: 62px;
+
+  margin-bottom: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+
+  background-color: #eaf3ff;
+
+  border-radius: 50%;
+
+  font-size: 26px;
+}
+
+.upload-principal {
+  margin: 0;
+
+  color: #1558c5;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.upload-secundario {
+  margin: 5px 0 13px;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.upload-formatos {
+  padding: 5px 10px;
+
+  color: #64748b;
+  background-color: #eaf1f9;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   ARQUIVO SELECIONADO
+========================= */
+
+.arquivo-selecionado {
+  width: 100%;
+
+  margin-top: 14px;
+  padding: 13px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  background-color: #f0f6ff;
+
+  border: 1px solid #cfe2ff;
+  border-radius: 11px;
+}
+
+.arquivo-selecionado div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  text-align: left;
+}
+
+.arquivo-selecionado strong {
+  color: #1e3a5f;
+
+  font-size: 12px;
+}
+
+.arquivo-selecionado span {
+  max-width: 280px;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arquivo-selecionado button {
+  padding: 7px 10px;
+
+  color: #b91c1c;
+  background-color: transparent;
+
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.arquivo-selecionado button:hover {
+  color: #ffffff;
+  background-color: #b91c1c;
+}
+
+
+/* =========================
+   BOTÃO DE IMPORTAÇÃO
+========================= */
+
+.enviar-button {
+  width: 100%;
+  min-height: 48px;
+
+  margin-top: 15px;
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1673f5
+  );
+
+  border: none;
+  border-radius: 11px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.enviar-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 24px rgba(37, 99, 235, 0.3);
+}
+
+.enviar-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   LISTA DE DOWNLOADS
+========================= */
+
+.lista-downloads {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.arquivo-item {
+  width: 100%;
+  min-height: 66px;
+
+  padding: 11px 14px;
+
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 13px;
+
+  color: #334155;
+  background-color: rgba(241, 245, 249, 0.9);
+
+  border: 1px solid transparent;
+  border-radius: 13px;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.arquivo-item:hover {
+  color: #1558c5;
+  background-color: #edf5ff;
+  border-color: #bfdbfe;
+
+  transform: translateX(4px);
+
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.08);
+}
+
+.arquivo-item-icone {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+  background-color: #dfeeff;
+
+  border-radius: 10px;
+
+  font-size: 17px;
+}
+
+.arquivo-item-texto {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  text-align: left;
+}
+
+.arquivo-item-texto strong {
+  color: #1e3a5f;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.arquivo-item-texto small {
+  color: #7c8ba1;
+
+  font-size: 11px;
+}
+
+.download-icon {
+  color: #7290b5;
+
+  font-size: 14px;
+
+  transition: transform 0.2s ease;
+}
+
+.arquivo-item:hover .download-icon {
+  color: #2563eb;
+
+  transform: translateY(2px);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .dados-container {
+    padding: 45px 20px 65px;
+  }
+
+  .dados-grid {
+    gap: 20px;
+  }
+
+  .dados-card {
+    padding: 23px;
+  }
+
+  .upload-zona {
+    min-height: 215px;
+  }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 720px) {
+
+  .dados-container {
+    padding: 36px 14px 55px;
+  }
+
+  .dados-header {
+    margin-bottom: 28px;
+  }
+
+  .dados-titulo {
+    font-size: 34px;
+  }
+
+  .dados-subtitulo {
+    font-size: 14px;
+  }
+
+  .dados-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dados-card {
+    padding: 20px;
+
+    border-radius: 17px;
+  }
+
+  .upload-zona {
+    min-height: 200px;
+    padding: 26px 18px;
+  }
+}
+
+
+/* =========================
+   CELULAR PEQUENO
+========================= */
+
+@media (max-width: 420px) {
+
+  .dados-card {
+    padding: 17px;
+  }
+
+  .card-cabecalho {
+    gap: 12px;
+  }
+
+  .card-icone {
+    width: 42px;
+    height: 42px;
+
+    font-size: 17px;
+  }
+
+  .card-cabecalho h2 {
+    font-size: 17px;
+  }
+
+  .arquivo-item {
+    grid-template-columns: 38px minmax(0, 1fr) 16px;
+
+    padding: 10px;
+  }
+
+  .arquivo-item-icone {
+    width: 38px;
+    height: 38px;
+  }
+}
+/* =========================
+   INFORMAÇÕES DO ARQUIVO
+========================= */
+
+.arquivo-selecionado-informacoes {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.arquivo-selecionado-informacoes small {
+  color: #7c8ba1;
+
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.arquivo-selecionado button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+/* =========================
+   MENSAGENS
+========================= */
+
+.mensagem-upload {
+  width: 100%;
+
+  margin-top: 13px;
+  padding: 11px 13px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.mensagem-sucesso {
+  color: #166534;
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.mensagem-erro {
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.mensagem-carregando {
+  color: #1d4ed8;
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+
+/* =========================
+   ANIMAÇÃO DE CARREGAMENTO
+========================= */
+
+.upload-spinner,
+.button-spinner {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+
+  display: inline-block;
+
+  border: 2px solid rgba(37, 99, 235, 0.25);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+
+  animation: girar-spinner 0.75s linear infinite;
+}
+
+.button-spinner {
+  border-color: rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+}
+
+@keyframes girar-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================
+   ARQUIVO IMPORTADO
+========================= */
+
+.arquivo-item-importado {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.arquivo-item-importado::after {
+  content: 'Novo';
+
+  padding: 3px 6px;
+
+  position: absolute;
+  top: -7px;
+  right: 10px;
+
+  color: #ffffff;
+  background-color: #2563eb;
+
+  border-radius: 999px;
+
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.arquivo-item-importado {
+  position: relative;
+}
+
+
+/* =========================
+   ESTADO DESABILITADO
+========================= */
+
+.enviar-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

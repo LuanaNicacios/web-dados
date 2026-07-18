@@ -1,0 +1,365 @@
+/* =========================
+   ÁREA EXTERNA DO NAVBAR
+========================= */
+
+.navbar-container {
+  width: 100%;
+  padding: 0;
+
+  position: relative;
+  z-index: 1000;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 74px;
+
+  margin: 0 auto;
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(49, 91, 138, 0.96),
+    rgba(55, 103, 158, 0.96)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 17px;
+
+  box-shadow:
+    0 8px 22px rgba(49, 91, 138, 0.2),
+    0 16px 36px rgba(37, 99, 235, 0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  text-decoration: none;
+}
+
+.logonavbar {
+  width: 100px;
+  height: auto;
+
+  display: block;
+  object-fit: contain;
+}
+
+
+/* =========================
+   CONTEÚDO DA DIREITA
+========================= */
+
+.navbar-conteudo {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.navbar-menu {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  list-style: none;
+}
+
+.navbar-menu li {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.nav-link {
+  min-height: 74px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  color: #e8f1ff;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-link::after {
+  content: '';
+
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+
+  width: 0;
+  height: 3px;
+
+  background-color: #93c5fd;
+  border-radius: 999px;
+
+  transform: translateX(-50%);
+
+  transition: width 0.25s ease;
+}
+
+.nav-link.active::after {
+  width: 28px;
+}
+
+.nav-link:focus {
+  outline: none;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.75);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+
+/* =========================
+   BOTÃO SAIR
+========================= */
+
+.logout-button {
+  min-height: 40px;
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.logout-button:hover:not(:disabled) {
+  color: #315b8a;
+  background-color: #ffffff;
+  border-color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+.logout-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 3px;
+}
+
+.logout-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .navbar-container {
+    padding: 14px 18px;
+  }
+
+  .navbar {
+    min-height: 68px;
+
+    padding: 0 22px;
+    gap: 22px;
+  }
+
+  .logonavbar {
+    width: 115px;
+  }
+
+  .navbar-conteudo {
+    gap: 18px;
+  }
+
+  .navbar-menu {
+    gap: 22px;
+  }
+
+  .nav-link {
+    min-height: 68px;
+
+    font-size: 13px;
+  }
+
+  .nav-link::after {
+    bottom: 10px;
+  }
+
+  .logout-button {
+    min-height: 38px;
+    padding: 0 12px;
+
+    font-size: 12px;
+  }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 680px) {
+
+  .navbar-container {
+    padding: 10px 12px;
+  }
+
+  .navbar {
+    min-height: auto;
+    padding: 11px 14px;
+    gap: 10px;
+
+    border-radius: 14px;
+  }
+
+  .logonavbar {
+    width: 82px;
+  }
+
+  .navbar-conteudo {
+    gap: 10px;
+  }
+
+  .navbar-menu {
+    gap: 12px;
+  }
+
+  .nav-link {
+    min-height: 44px;
+
+    font-size: 11px;
+  }
+
+  .nav-link::after {
+    bottom: 2px;
+
+    height: 2px;
+  }
+
+  .nav-link.active::after {
+    width: 18px;
+  }
+
+  .logout-button {
+    width: 38px;
+    min-height: 38px;
+    padding: 0;
+  }
+
+  .logout-button span {
+    display: none;
+  }
+}
+
+
+/* =========================
+   CELULARES PEQUENOS
+========================= */
+
+@media (max-width: 430px) {
+
+  .navbar {
+    padding: 9px 10px;
+    gap: 7px;
+  }
+
+  .logonavbar {
+    width: 66px;
+  }
+
+  .navbar-conteudo {
+    gap: 7px;
+  }
+
+  .navbar-menu {
+    gap: 8px;
+  }
+
+  .nav-link {
+    min-height: 40px;
+
+    font-size: 9px;
+  }
+
+  .logout-button {
+    width: 34px;
+    min-height: 34px;
+
+    font-size: 12px;
+  }
+}
