@@ -2,7 +2,7 @@ import React from 'react'
 import './Footer.css'
 
 import facepeimg from '../../assets/facepeimg.png'
-import cientistaLogo from '../../assets/cientistalogo.png'
+import cientistalogo from '../../assets/cientistalogo.png'
 
 import {
   FaEnvelope,
