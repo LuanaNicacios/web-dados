@@ -38,12 +38,17 @@
    LOGOS
 ========================= */
 
+.cientistalogo,
 .facepeimg {
   width: 120px;
   max-height: 72px;
 
   display: block;
   object-fit: contain;
+}
+
+.cientistalogo{
+  justify-self: start;
 }
 
 .facepeimg {
