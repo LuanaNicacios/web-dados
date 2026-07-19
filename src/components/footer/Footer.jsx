@@ -2,7 +2,7 @@ import React from 'react'
 import './Footer.css'
 
 import facepeimg from '../../assets/facepeimg.png'
-import cientistaLogo from '../../assets/cientistaLogo.png'
+import cientistaLogo from '../../assets/cientistalogo.png'
 
 import {
   FaEnvelope,
@@ -17,9 +17,9 @@ const Footer = () => {
       <div className="footer">
 
         <img
-          src={cientistaLogo}
+          src={cientistalogo}
           alt="Logo Cientista"
-          className="cientistaLogo"
+          className="CientistaLogo"
         />
 
         <div className="informacao">
