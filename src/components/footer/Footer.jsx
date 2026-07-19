@@ -15,11 +15,11 @@ const Footer = () => {
 
       <div className="footer">
 
-        {/*<img
+        <img
           src={cientistalogo}
           alt="cientistalogo"
           className="cientistalogo"
-        />*/} 
+        />
 
         <div className="informacao">
 
