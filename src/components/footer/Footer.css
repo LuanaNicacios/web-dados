@@ -38,7 +38,7 @@
    LOGOS
 ========================= */
 
-.cientistalogo,
+.footerlogo,
 .facepeimg {
   width: 120px;
   max-height: 72px;
@@ -47,7 +47,7 @@
   object-fit: contain;
 }
 
-.cientistalogo{
+.footerlogo{
   justify-self: start;
 }
 
