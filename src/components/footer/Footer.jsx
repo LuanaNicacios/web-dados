@@ -18,7 +18,7 @@ const Footer = () => {
 
         <img
           src={cientistalogo}
-          alt="Logo Cientista"
+          alt="logo cientista"
           className="cientistalogo"
         />
 
