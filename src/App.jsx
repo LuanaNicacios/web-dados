@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {
-  BrowserRouter,
+  HashRouter,
   Navigate,
   Route,
   Routes,
@@ -116,11 +116,10 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppContent />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
 export default App
-
