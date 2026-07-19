@@ -19,7 +19,7 @@ const Footer = () => {
         <img
           src={cientistalogo}
           alt="Logo Cientista"
-          className="CientistaLogo"
+          className="cientistalogo"
         />
 
         <div className="informacao">
