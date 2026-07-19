@@ -10,7 +10,6 @@ import {
 
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/footer/Footer'
-
 import Home from './components/pages/Home'
 import Analises from './components/pages/Analises'
 import Dados from './components/pages/Dados'
