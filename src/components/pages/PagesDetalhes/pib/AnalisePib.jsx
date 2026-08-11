@@ -63,21 +63,25 @@ const TRIBUTOS = [
     sigla: 'IPTU',
     nome: 'Imposto Predial e Territorial Urbano'
   },
+
   {
     campo: 'issqn',
     sigla: 'ISSQN',
     nome: 'Imposto Sobre Serviços de Qualquer Natureza'
   },
+
   {
     campo: 'itbi',
     sigla: 'ITBI',
     nome: 'Imposto sobre Transmissão de Bens Imóveis'
   },
+
   {
     campo: 'irrf',
     sigla: 'IRRF',
     nome: 'Imposto de Renda Retido na Fonte'
   },
+
   {
     campo: 'taxas',
     sigla: 'Taxas',
@@ -90,73 +94,93 @@ const LAVOURAS = [
     campo: 'lavouras_arroz',
     nome: 'Arroz'
   },
+
   {
     campo: 'lavouras_cana_de_acucar',
     nome: 'Cana-de-açúcar'
   },
+
   {
     campo: 'lavouras_castanha_de_caju',
     nome: 'Castanha de caju'
   },
+
   {
     campo: 'lavouras_cebola',
     nome: 'Cebola'
   },
+
   {
     campo: 'lavouras_coco_da_baia',
     nome: 'Coco-da-baía'
   },
+
   {
     campo: 'lavouras_laranja',
     nome: 'Laranja'
   },
+
   {
     campo: 'lavouras_abacaxi',
     nome: 'Abacaxi'
   },
+
   {
     campo: 'lavouras_mandioca',
     nome: 'Mandioca'
   },
+
   {
     campo: 'lavouras_tomate',
     nome: 'Tomate'
   },
+
   {
     campo: 'lavouras_uva',
     nome: 'Uva'
   },
+
   {
     campo: 'lavouras_banana',
     nome: 'Banana'
   },
+
   {
     campo: 'lavouras_cafe_total',
     nome: 'Café'
   }
 ]
 
+
 const AnalisePib = () => {
+
+  const baseUrl =
+    import.meta.env.BASE_URL
+
 
   const [
     dadosRendimento,
     setDadosRendimento
   ] = useState([])
 
+
   const [
     dadosFinbra,
     setDadosFinbra
   ] = useState(null)
+
 
   const [
     dadosAgro,
     setDadosAgro
   ] = useState([])
 
+
   const [
     carregando,
     setCarregando
   ] = useState(true)
+
 
   const [
     erro,
@@ -164,6 +188,7 @@ const AnalisePib = () => {
   ] = useState('')
 
   const formatarMoeda = (valor) => {
+
     return new Intl.NumberFormat(
       'pt-BR',
       {
@@ -172,34 +197,44 @@ const AnalisePib = () => {
         maximumFractionDigits: 0
       }
     ).format(valor || 0)
+
   }
 
 
   const formatarNumero = (valor) => {
+
     return new Intl.NumberFormat(
       'pt-BR',
       {
         maximumFractionDigits: 0
       }
     ).format(valor || 0)
+
   }
 
 
   const formatarValorEixo = (valor) => {
 
     if (valor >= 1000000) {
+
       return `${(
         valor / 1000000
       ).toFixed(1)}M`
+
     }
 
+
     if (valor >= 1000) {
+
       return `${(
         valor / 1000
       ).toFixed(0)}K`
+
     }
 
+
     return valor
+
   }
 
   const calcularMedia = (
@@ -211,20 +246,27 @@ const AnalisePib = () => {
       return 0
     }
 
+
     const valoresValidos =
       dados
         .map((linha) =>
-          Number(linha[campo])
+          Number(
+            linha[campo]
+          )
         )
         .filter((valor) =>
-          Number.isFinite(valor)
+          Number.isFinite(
+            valor
+          )
         )
+
 
     if (
       valoresValidos.length === 0
     ) {
       return 0
     }
+
 
     const soma =
       valoresValidos.reduce(
@@ -233,10 +275,12 @@ const AnalisePib = () => {
         0
       )
 
+
     return (
       soma /
       valoresValidos.length
     )
+
   }
 
   const tratarRendimento = (
@@ -248,6 +292,7 @@ const AnalisePib = () => {
         NOMES_CAMPOS_RENDIMENTO
       )
 
+
     const resultado =
       campos.map((campo) => {
 
@@ -257,7 +302,9 @@ const AnalisePib = () => {
             campo
           )
 
+
         return {
+
           setor:
             NOMES_CAMPOS_RENDIMENTO[
               campo
@@ -267,8 +314,11 @@ const AnalisePib = () => {
             Number(
               media.toFixed(2)
             )
+
         }
+
       })
+
 
     resultado.sort(
       (a, b) =>
@@ -276,7 +326,9 @@ const AnalisePib = () => {
         a.rendimento
     )
 
+
     return resultado
+
   }
 
   const tratarFinbra = (
@@ -286,14 +338,22 @@ const AnalisePib = () => {
     const composicaoTributaria =
       TRIBUTOS.map(
         (tributo) => ({
-          sigla: tributo.sigla,
-          nome: tributo.nome,
-          valor: calcularMedia(
-            dados,
-            tributo.campo
-          )
+
+          sigla:
+            tributo.sigla,
+
+          nome:
+            tributo.nome,
+
+          valor:
+            calcularMedia(
+              dados,
+              tributo.campo
+            )
+
         })
       )
+
 
     return {
 
@@ -328,7 +388,9 @@ const AnalisePib = () => {
         ),
 
       composicaoTributaria
+
     }
+
   }
 
   const tratarAgro = (
@@ -338,6 +400,7 @@ const AnalisePib = () => {
     const resultado =
       LAVOURAS.map(
         (lavoura) => ({
+
           lavoura:
             lavoura.nome,
 
@@ -348,8 +411,10 @@ const AnalisePib = () => {
                 lavoura.campo
               ).toFixed(2)
             )
+
         })
       )
+
 
     const valoresComDados =
       resultado.filter(
@@ -357,13 +422,16 @@ const AnalisePib = () => {
           item.valor > 0
       )
 
+
     valoresComDados.sort(
       (a, b) =>
         b.valor -
         a.valor
     )
 
+
     return valoresComDados
+
   }
 
   useEffect(() => {
@@ -374,6 +442,7 @@ const AnalisePib = () => {
         try {
 
           setCarregando(true)
+
           setErro('')
 
 
@@ -385,15 +454,15 @@ const AnalisePib = () => {
             await Promise.all([
 
               carregarCsv(
-                '/datasets/rendimento.csv'
+                `${baseUrl}datasets/rendimento.csv`
               ),
 
               carregarCsv(
-                '/datasets/finbra.csv'
+                `${baseUrl}datasets/finbra.csv`
               ),
 
               carregarCsv(
-                '/datasets/agro_lavouras.csv'
+                `${baseUrl}datasets/agro_lavouras.csv`
               )
 
             ])
@@ -402,27 +471,33 @@ const AnalisePib = () => {
           if (
             !rendimento?.length
           ) {
+
             throw new Error(
               'O arquivo rendimento.csv não possui dados.'
             )
+
           }
 
 
           if (
             !finbra?.length
           ) {
+
             throw new Error(
               'O arquivo finbra.csv não possui dados.'
             )
+
           }
 
 
           if (
             !agro?.length
           ) {
+
             throw new Error(
               'O arquivo agro_lavouras.csv não possui dados.'
             )
+
           }
 
 
@@ -454,40 +529,49 @@ const AnalisePib = () => {
             error
           )
 
+
           setErro(
             'Não foi possível carregar os dados da análise.'
           )
+
 
         } finally {
 
           setCarregando(false)
 
         }
+
       }
 
 
     carregarDados()
 
-  }, [])
+  }, [baseUrl])
 
   if (carregando) {
 
     return (
+
       <div className="pib-estado">
 
-        <span className="pib-spinner" />
+        <span
+          className="pib-spinner"
+        />
 
         <p>
           Carregando dados econômicos...
         </p>
 
       </div>
+
     )
+
   }
 
   if (erro) {
 
     return (
+
       <div
         className="
           pib-estado
@@ -496,7 +580,9 @@ const AnalisePib = () => {
       >
         {erro}
       </div>
+
     )
+
   }
 
   return (
@@ -510,7 +596,6 @@ const AnalisePib = () => {
         </h2>
 
         <p>
-        
         </p>
 
       </header>
@@ -556,12 +641,15 @@ const AnalisePib = () => {
                   horizontal={false}
                 />
 
+
                 <XAxis
                   type="number"
-                  tickFormatter={(valor) =>
-                    `R$ ${valor}`
+                  tickFormatter={
+                    (valor) =>
+                      `R$ ${valor}`
                   }
                 />
+
 
                 <YAxis
                   type="category"
@@ -572,12 +660,18 @@ const AnalisePib = () => {
                   }}
                 />
 
+
                 <Tooltip
-                  formatter={(valor) => [
-                    formatarMoeda(valor),
-                    'Rendimento médio'
-                  ]}
+                  formatter={
+                    (valor) => [
+                      formatarMoeda(
+                        valor
+                      ),
+                      'Rendimento médio'
+                    ]
+                  }
                 />
+
 
                 <Bar
                   dataKey="rendimento"
@@ -745,12 +839,14 @@ const AnalisePib = () => {
                     vertical={false}
                   />
 
+
                   <XAxis
                     dataKey="sigla"
                     tick={{
                       fontSize: 11
                     }}
                   />
+
 
                   <YAxis
                     tickFormatter={
@@ -761,30 +857,41 @@ const AnalisePib = () => {
                     }}
                   />
 
+
                   <Tooltip
-                    formatter={(valor) => [
-                      formatarMoeda(valor),
-                      'Valor médio'
-                    ]}
-                    labelFormatter={(sigla) => {
+                    formatter={
+                      (valor) => [
+                        formatarMoeda(
+                          valor
+                        ),
+                        'Valor médio'
+                      ]
+                    }
+                    labelFormatter={
+                      (sigla) => {
 
-                      const item =
-                        dadosFinbra
-                          .composicaoTributaria
-                          .find(
-                            (dado) =>
-                              dado.sigla === sigla
-                          )
+                        const item =
+                          dadosFinbra
+                            .composicaoTributaria
+                            .find(
+                              (dado) =>
+                                dado.sigla === sigla
+                            )
 
-                      if (!item) {
-                        return sigla
+
+                        if (!item) {
+                          return sigla
+                        }
+
+
+                        return (
+                          `${item.sigla} — ${item.nome}`
+                        )
+
                       }
-
-                      return (
-                        `${item.sigla} — ${item.nome}`
-                      )
-                    }}
+                    }
                   />
+
 
                   <Bar
                     dataKey="valor"
@@ -894,6 +1001,7 @@ const AnalisePib = () => {
                     horizontal={false}
                   />
 
+
                   <XAxis
                     type="number"
                     tickFormatter={
@@ -904,6 +1012,7 @@ const AnalisePib = () => {
                     }}
                   />
 
+
                   <YAxis
                     type="category"
                     dataKey="lavoura"
@@ -913,12 +1022,18 @@ const AnalisePib = () => {
                     }}
                   />
 
+
                   <Tooltip
-                    formatter={(valor) => [
-                      formatarNumero(valor),
-                      'Média'
-                    ]}
+                    formatter={
+                      (valor) => [
+                        formatarNumero(
+                          valor
+                        ),
+                        'Média'
+                      ]
+                    }
                   />
+
 
                   <Bar
                     dataKey="valor"

@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, {
+  useState
+} from 'react'
 
 import {
   useLocation,
@@ -22,16 +24,31 @@ import AnalisePib from './pib/AnalisePib'
 
 
 const AnaliseDetalhes = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
+
+  const navigate =
+    useNavigate()
+
+  const location =
+    useLocation()
+
+  const baseUrl =
+    import.meta.env.BASE_URL
+
 
   const paginaPib =
     location.pathname
       .toLowerCase()
-      .includes('/analises/pib')
+      .includes(
+        '/analises/pib'
+      )
 
-  const [secaoAtiva, setSecaoAtiva] =
-    useState('analise')
+
+  const [
+    secaoAtiva,
+    setSecaoAtiva
+  ] = useState(
+    'analise'
+  )
 
 
   const powerBiUrl =
@@ -39,125 +56,168 @@ const AnaliseDetalhes = () => {
 
 
   const secoes = {
+
     sobre: {
-      titulo: 'Sobre os dados',
+
+      titulo:
+        'Sobre os dados',
 
       conteudo:
         'Esta análise apresenta indicadores relacionados ao Produto Interno Bruto (PIB), incluindo informações sobre crescimento econômico, participação dos setores produtivos, evolução da atividade econômica e desempenho da economia ao longo do tempo.'
+
     },
 
+
     metodologia: {
-      titulo: 'Metodologia',
+
+      titulo:
+        'Metodologia',
 
       conteudo:
         'Os dados foram organizados, tratados e analisados para permitir a visualização dos principais indicadores do conjunto de dados.'
+
     },
 
+
     fonte: {
-      titulo: 'Fonte',
+
+      titulo:
+        'Fonte',
 
       conteudo:
         'Os indicadores desta versão demonstrativa são construídos a partir dos arquivos CSV disponibilizados para análise.'
+
     },
 
+
     atualizacoes: {
-      titulo: 'Atualizações',
+
+      titulo:
+        'Atualizações',
 
       conteudo:
         'Os dados poderão ser atualizados conforme novas versões das bases forem disponibilizadas.'
+
     }
+
   }
 
 
   const handleVoltar = () => {
-    navigate('/Analises')
-  }
 
-
-  const handleDownload = (arquivo) => {
-    console.log(
-      'Download solicitado:',
-      arquivo
+    navigate(
+      '/Analises'
     )
+
   }
 
 
   return (
+
     <main className="detalhes-page">
 
       <section className="detalhes-container">
-
-        {/* =========================
-            BREADCRUMB
-        ========================= */}
 
         <nav
           className="breadcrumb"
           aria-label="Navegação estrutural"
         >
-          <span>Início</span>
 
-          <span>/</span>
+          <span>
+            Início
+          </span>
 
-          <span>Análises</span>
+          <span>
+            /
+          </span>
 
-          <span>/</span>
+          <span>
+            Análises
+          </span>
+
+          <span>
+            /
+          </span>
 
           <strong>
+
             {paginaPib
               ? 'Dados PIB'
-              : 'Análise'}
+              : 'Análise'
+            }
+
           </strong>
+
         </nav>
-
-
-        {/* =========================
-            CABEÇALHO
-        ========================= */}
 
         <header className="detalhes-header">
 
           <button
             type="button"
             className="voltar-button"
-            onClick={handleVoltar}
+            onClick={
+              handleVoltar
+            }
           >
+
             <FaArrowLeft />
 
             Voltar
+
           </button>
 
 
           <div className="detalhes-identificacao">
 
             <div className="detalhes-icon">
+
               <FaChartBar />
+
             </div>
 
 
             <div className="detalhes-title-area">
 
               <h1>
+
                 {paginaPib
                   ? 'Análise do PIB e Indicadores Econômicos'
-                  : 'Análise de Dados'}
+                  : 'Análise de Dados'
+                }
+
               </h1>
 
+
               <p>
+
                 {paginaPib
                   ? 'Indicadores econômicos apresentados diretamente no portal.'
-                  : 'Estatísticas e indicadores dos dados disponíveis.'}
+                  : 'Estatísticas e indicadores dos dados disponíveis.'
+                }
+
               </p>
 
 
               <div className="detalhes-tags">
 
                 {paginaPib && (
+
                   <>
-                    <span>PIB</span>
-                    <span>Dados Econômicos</span>
-                    <span>CSV</span>
+
+                    <span>
+                      PIB
+                    </span>
+
+                    <span>
+                      Dados Econômicos
+                    </span>
+
+                    <span>
+                      CSV
+                    </span>
+
                   </>
+
                 )}
 
               </div>
@@ -168,17 +228,7 @@ const AnaliseDetalhes = () => {
 
         </header>
 
-
-        {/* =========================
-            CONTEÚDO
-        ========================= */}
-
         <div className="detalhes-layout">
-
-
-          {/* =========================
-              MENU LATERAL
-          ========================= */}
 
           <aside className="detalhes-sidebar">
 
@@ -202,6 +252,7 @@ const AnaliseDetalhes = () => {
 
             <div className="sidebar-menu">
 
+
               <button
                 type="button"
                 className={
@@ -210,14 +261,18 @@ const AnaliseDetalhes = () => {
                     : 'sidebar-item'
                 }
                 onClick={() =>
-                  setSecaoAtiva('analise')
+                  setSecaoAtiva(
+                    'analise'
+                  )
                 }
               >
+
                 <FaChartBar />
 
                 <span>
                   Análise dos dados
                 </span>
+
               </button>
 
 
@@ -229,14 +284,18 @@ const AnaliseDetalhes = () => {
                     : 'sidebar-item'
                 }
                 onClick={() =>
-                  setSecaoAtiva('sobre')
+                  setSecaoAtiva(
+                    'sobre'
+                  )
                 }
               >
+
                 <FaInfoCircle />
 
                 <span>
                   Sobre os dados
                 </span>
+
               </button>
 
 
@@ -248,14 +307,18 @@ const AnaliseDetalhes = () => {
                     : 'sidebar-item'
                 }
                 onClick={() =>
-                  setSecaoAtiva('metodologia')
+                  setSecaoAtiva(
+                    'metodologia'
+                  )
                 }
               >
+
                 <FaFileAlt />
 
                 <span>
                   Metodologia
                 </span>
+
               </button>
 
 
@@ -267,14 +330,18 @@ const AnaliseDetalhes = () => {
                     : 'sidebar-item'
                 }
                 onClick={() =>
-                  setSecaoAtiva('fonte')
+                  setSecaoAtiva(
+                    'fonte'
+                  )
                 }
               >
+
                 <FaDatabase />
 
                 <span>
                   Fonte
                 </span>
+
               </button>
 
 
@@ -286,102 +353,113 @@ const AnaliseDetalhes = () => {
                     : 'sidebar-item'
                 }
                 onClick={() =>
-                  setSecaoAtiva('atualizacoes')
+                  setSecaoAtiva(
+                    'atualizacoes'
+                  )
                 }
               >
+
                 <FaClock />
 
                 <span>
                   Atualizações
                 </span>
+
               </button>
 
             </div>
 
           </aside>
 
-
-          {/* =========================
-              ÁREA CENTRAL
-          ========================= */}
-
           <section className="detalhes-content">
 
-            {secaoAtiva === 'analise' ? (
 
-              paginaPib ? (
+            {secaoAtiva === 'analise'
+              ? (
 
-                /*
-                 * Aqui fica o novo dashboard
-                 * feito diretamente com React.
-                 */
-                <AnalisePib />
+                paginaPib
+                  ? (
 
-              ) : (
+                    <AnalisePib />
 
-                /*
-                 * Mantemos o Power BI
-                 * temporariamente nas outras
-                 * análises.
-                 */
-                <div className="powerbi-card">
+                  )
+                  : (
 
-                  <div className="powerbi-header">
+                    <div className="powerbi-card">
 
-                    <h2>
-                      Análise Power BI
-                    </h2>
+                      <div className="powerbi-header">
 
-                    <a
-                      href={powerBiUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="powerbi-external-link"
-                    >
-                      Abrir no Power BI
-
-                      <FaExternalLinkAlt />
-                    </a>
-
-                  </div>
+                        <h2>
+                          Análise Power BI
+                        </h2>
 
 
-                  <div className="powerbi-frame-wrapper">
+                        <a
+                          href={
+                            powerBiUrl
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="powerbi-external-link"
+                        >
 
-                    <iframe
-                      title="Relatório Power BI"
-                      src={powerBiUrl}
-                      allowFullScreen
-                    />
+                          Abrir no Power BI
 
-                  </div>
+                          <FaExternalLinkAlt />
+
+                        </a>
+
+                      </div>
+
+
+                      <div className="powerbi-frame-wrapper">
+
+                        <iframe
+                          title="Relatório Power BI"
+                          src={
+                            powerBiUrl
+                          }
+                          allowFullScreen
+                        />
+
+                      </div>
+
+                    </div>
+
+                  )
+
+              )
+              : (
+
+                <div className="information-card">
+
+                  <h2>
+
+                    {
+                      secoes[
+                        secaoAtiva
+                      ].titulo
+                    }
+
+                  </h2>
+
+                  <p>
+
+                    {
+                      secoes[
+                        secaoAtiva
+                      ].conteudo
+                    }
+
+                  </p>
 
                 </div>
 
               )
-
-            ) : (
-
-              <div className="information-card">
-
-                <h2>
-                  {secoes[secaoAtiva].titulo}
-                </h2>
-
-                <p>
-                  {secoes[secaoAtiva].conteudo}
-                </p>
-
-              </div>
-
-            )}
-
-
-            {/* =========================
-                DOWNLOADS
-            ========================= */}
+            }
 
             {paginaPib && (
+
               <section className="downloads-card">
 
                 <h2>
@@ -391,41 +469,55 @@ const AnaliseDetalhes = () => {
 
                 <div className="downloads-list">
 
+
                   <a
-                    href="/datasets/rendimento.csv"
+                    href={
+                      `${baseUrl}datasets/rendimento.csv`
+                    }
                     download
                     className="download-button"
                   >
+
                     <FaDownload />
 
                     Rendimento (.CSV)
+
                   </a>
 
 
                   <a
-                    href="/datasets/finbra.csv"
+                    href={
+                      `${baseUrl}datasets/finbra.csv`
+                    }
                     download
                     className="download-button"
                   >
+
                     <FaDownload />
 
                     Finanças Públicas (.CSV)
+
                   </a>
 
 
                   <a
-                    href="/datasets/agro_lavouras.csv"
+                    href={
+                      `${baseUrl}datasets/agro_lavouras.csv`
+                    }
                     download
                     className="download-button"
                   >
+
                     <FaDownload />
 
                     Agropecuária (.CSV)
+
                   </a>
 
                 </div>
 
               </section>
+
             )}
 
           </section>
