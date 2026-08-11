@@ -139,7 +139,7 @@
 
   color: #102a4c;
 
-  font-size: clamp(30px, 4vw, 46px);
+  font-size: clamp(20px, 3vw, 36px);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -1px;

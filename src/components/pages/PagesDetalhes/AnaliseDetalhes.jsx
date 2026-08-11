@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+
+import {
+  useLocation,
+  useNavigate
+} from 'react-router-dom'
+
 import './AnaliseDetalhes.css'
 
 import {
@@ -10,83 +15,106 @@ import {
   FaDatabase,
   FaClock,
   FaDownload,
-  FaExternalLinkAlt,
-  FaFilm
+  FaExternalLinkAlt
 } from 'react-icons/fa'
+
+import AnalisePib from './pib/AnalisePib'
+
 
 const AnaliseDetalhes = () => {
   const navigate = useNavigate()
+  const location = useLocation()
 
-  const [secaoAtiva, setSecaoAtiva] = useState('powerbi')
+  const paginaPib =
+    location.pathname
+      .toLowerCase()
+      .includes('/analises/pib')
 
-  /*
-    Substitua pela URL pública do seu relatório.
+  const [secaoAtiva, setSecaoAtiva] =
+    useState('analise')
 
-    No Power BI, normalmente será uma URL gerada em:
-    Arquivo > Inserir relatório > Publicar na Web
 
-    Atenção:
-    "Publicar na Web" deixa o relatório acessível publicamente.
-  */
   const powerBiUrl =
-    'https://app.powerbi.com/reportEmbed?reportId=9b882393-a939-41d0-8962-e114c92939c3&autoAuth=true&ctid=65369057-8836-4ab5-9dec-74cfd40b94c4'
+    'https://app.powerbi.com/reportEmbed?reportId=912bb1df-2807-4f87-a102-40d60df30774&autoAuth=true&ctid=76a2ae5a-9f00-4f6b-95ed-5d33d77c4d61'
+
 
   const secoes = {
-    powerbi: {
-      titulo: 'Análise Power BI'
-    },
-
     sobre: {
       titulo: 'Sobre os dados',
+
       conteudo:
-        'Esta análise apresenta indicadores relacionados ao mercado cinematográfico, incluindo informações sobre filmes, gêneros, avaliações, lançamentos e desempenho.'
+        'Esta análise apresenta indicadores relacionados ao Produto Interno Bruto (PIB), incluindo informações sobre crescimento econômico, participação dos setores produtivos, evolução da atividade econômica e desempenho da economia ao longo do tempo.'
     },
 
     metodologia: {
       titulo: 'Metodologia',
+
       conteudo:
         'Os dados foram organizados, tratados e analisados para permitir a visualização dos principais indicadores do conjunto de dados.'
     },
 
     fonte: {
       titulo: 'Fonte',
+
       conteudo:
-        'Informe aqui a instituição, plataforma ou base responsável pelo fornecimento dos dados utilizados nesta análise.'
+        'Os indicadores desta versão demonstrativa são construídos a partir dos arquivos CSV disponibilizados para análise.'
     },
 
     atualizacoes: {
       titulo: 'Atualizações',
+
       conteudo:
-        'Última atualização: informe aqui a data da atualização mais recente dos dados.'
+        'Os dados poderão ser atualizados conforme novas versões das bases forem disponibilizadas.'
     }
   }
+
 
   const handleVoltar = () => {
     navigate('/Analises')
   }
 
+
   const handleDownload = (arquivo) => {
-    console.log('Download solicitado:', arquivo)
+    console.log(
+      'Download solicitado:',
+      arquivo
+    )
   }
+
 
   return (
     <main className="detalhes-page">
 
       <section className="detalhes-container">
 
-        {/* Caminho da página */}
+        {/* =========================
+            BREADCRUMB
+        ========================= */}
+
         <nav
           className="breadcrumb"
           aria-label="Navegação estrutural"
         >
           <span>Início</span>
+
           <span>/</span>
+
           <span>Análises</span>
+
           <span>/</span>
-          <strong>Dados Filme</strong>
+
+          <strong>
+            {paginaPib
+              ? 'Dados PIB'
+              : 'Análise'}
+          </strong>
         </nav>
 
-        {/* Cabeçalho */}
+
+        {/* =========================
+            CABEÇALHO
+        ========================= */}
+
         <header className="detalhes-header">
 
           <button
@@ -95,28 +123,43 @@ const AnaliseDetalhes = () => {
             onClick={handleVoltar}
           >
             <FaArrowLeft />
+
             Voltar
           </button>
+
 
           <div className="detalhes-identificacao">
 
             <div className="detalhes-icon">
-              <FaFilm />
+              <FaChartBar />
             </div>
+
 
             <div className="detalhes-title-area">
 
               <h1>
-                Análise Power BI – Filmes
+                {paginaPib
+                  ? 'Análise do PIB e Indicadores Econômicos'
+                  : 'Análise de Dados'}
               </h1>
 
               <p>
-                Estatísticas e indicadores do mercado cinematográfico.
+                {paginaPib
+                  ? 'Indicadores econômicos apresentados diretamente no portal.'
+                  : 'Estatísticas e indicadores dos dados disponíveis.'}
               </p>
 
+
               <div className="detalhes-tags">
-                <span>Filme</span>
-                <span>Power BI</span>
+
+                {paginaPib && (
+                  <>
+                    <span>PIB</span>
+                    <span>Dados Econômicos</span>
+                    <span>CSV</span>
+                  </>
+                )}
+
               </div>
 
             </div>
@@ -125,10 +168,18 @@ const AnaliseDetalhes = () => {
 
         </header>
 
-        {/* Conteúdo principal */}
+
+        {/* =========================
+            CONTEÚDO
+        ========================= */}
+
         <div className="detalhes-layout">
 
-          {/* Menu lateral */}
+
+          {/* =========================
+              MENU LATERAL
+          ========================= */}
+
           <aside className="detalhes-sidebar">
 
             <div className="sidebar-description">
@@ -138,26 +189,37 @@ const AnaliseDetalhes = () => {
               </h2>
 
               <p>
-                Indicadores sobre o mercado cinematográfico,
-                bilheteria, lançamentos, público e desempenho de filmes.
+                Indicadores sobre o PIB,
+                produção econômica,
+                crescimento, participação
+                dos setores e desempenho
+                da economia ao longo do
+                tempo.
               </p>
 
             </div>
+
 
             <div className="sidebar-menu">
 
               <button
                 type="button"
                 className={
-                  secaoAtiva === 'powerbi'
+                  secaoAtiva === 'analise'
                     ? 'sidebar-item active'
                     : 'sidebar-item'
                 }
-                onClick={() => setSecaoAtiva('powerbi')}
+                onClick={() =>
+                  setSecaoAtiva('analise')
+                }
               >
                 <FaChartBar />
-                <span>Análise Power BI</span>
+
+                <span>
+                  Análise dos dados
+                </span>
               </button>
+
 
               <button
                 type="button"
@@ -166,11 +228,17 @@ const AnaliseDetalhes = () => {
                     ? 'sidebar-item active'
                     : 'sidebar-item'
                 }
-                onClick={() => setSecaoAtiva('sobre')}
+                onClick={() =>
+                  setSecaoAtiva('sobre')
+                }
               >
                 <FaInfoCircle />
-                <span>Sobre os dados</span>
+
+                <span>
+                  Sobre os dados
+                </span>
               </button>
+
 
               <button
                 type="button"
@@ -179,11 +247,17 @@ const AnaliseDetalhes = () => {
                     ? 'sidebar-item active'
                     : 'sidebar-item'
                 }
-                onClick={() => setSecaoAtiva('metodologia')}
+                onClick={() =>
+                  setSecaoAtiva('metodologia')
+                }
               >
                 <FaFileAlt />
-                <span>Metodologia</span>
+
+                <span>
+                  Metodologia
+                </span>
               </button>
+
 
               <button
                 type="button"
@@ -192,11 +266,17 @@ const AnaliseDetalhes = () => {
                     ? 'sidebar-item active'
                     : 'sidebar-item'
                 }
-                onClick={() => setSecaoAtiva('fonte')}
+                onClick={() =>
+                  setSecaoAtiva('fonte')
+                }
               >
                 <FaDatabase />
-                <span>Fonte</span>
+
+                <span>
+                  Fonte
+                </span>
               </button>
+
 
               <button
                 type="button"
@@ -205,52 +285,83 @@ const AnaliseDetalhes = () => {
                     ? 'sidebar-item active'
                     : 'sidebar-item'
                 }
-                onClick={() => setSecaoAtiva('atualizacoes')}
+                onClick={() =>
+                  setSecaoAtiva('atualizacoes')
+                }
               >
                 <FaClock />
-                <span>Atualizações</span>
+
+                <span>
+                  Atualizações
+                </span>
               </button>
 
             </div>
 
           </aside>
 
-          {/* Área central */}
+
+          {/* =========================
+              ÁREA CENTRAL
+          ========================= */}
+
           <section className="detalhes-content">
 
-            {secaoAtiva === 'powerbi' ? (
-              <div className="powerbi-card">
+            {secaoAtiva === 'analise' ? (
 
-                <div className="powerbi-header">
+              paginaPib ? (
 
-                  <h2>
-                    Análise Power BI
-                  </h2>
+                /*
+                 * Aqui fica o novo dashboard
+                 * feito diretamente com React.
+                 */
+                <AnalisePib />
 
-                  <a
-                    href={powerBiUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="powerbi-external-link"
-                  >
-                    Abrir no Power BI
-                    <FaExternalLinkAlt />
-                  </a>
+              ) : (
+
+                /*
+                 * Mantemos o Power BI
+                 * temporariamente nas outras
+                 * análises.
+                 */
+                <div className="powerbi-card">
+
+                  <div className="powerbi-header">
+
+                    <h2>
+                      Análise Power BI
+                    </h2>
+
+                    <a
+                      href={powerBiUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="powerbi-external-link"
+                    >
+                      Abrir no Power BI
+
+                      <FaExternalLinkAlt />
+                    </a>
+
+                  </div>
+
+
+                  <div className="powerbi-frame-wrapper">
+
+                    <iframe
+                      title="Relatório Power BI"
+                      src={powerBiUrl}
+                      allowFullScreen
+                    />
+
+                  </div>
 
                 </div>
 
-                <div className="powerbi-frame-wrapper">
+              )
 
-                  <iframe
-                    title="Relatório Power BI de Filmes"
-                    src={powerBiUrl}
-                    allowFullScreen
-                  />
-
-                </div>
-
-              </div>
             ) : (
+
               <div className="information-card">
 
                 <h2>
@@ -262,47 +373,60 @@ const AnaliseDetalhes = () => {
                 </p>
 
               </div>
+
             )}
 
-            {/* Downloads */}
-            <section className="downloads-card">
 
-              <h2>
-                Download dos dados
-              </h2>
+            {/* =========================
+                DOWNLOADS
+            ========================= */}
 
-              <div className="downloads-list">
+            {paginaPib && (
+              <section className="downloads-card">
 
-                <button
-                  type="button"
-                  className="download-button"
-                  onClick={() => handleDownload('dados.csv')}
-                >
-                  <FaDownload />
-                  Dados (.CSV)
-                </button>
+                <h2>
+                  Download dos dados
+                </h2>
 
-                <button
-                  type="button"
-                  className="download-button"
-                  onClick={() => handleDownload('dados.xlsx')}
-                >
-                  <FaDownload />
-                  Dados (.XLSX)
-                </button>
 
-                <button
-                  type="button"
-                  className="download-button"
-                  onClick={() => handleDownload('analise.py')}
-                >
-                  <FaDownload />
-                  Dados (.PY)
-                </button>
+                <div className="downloads-list">
 
-              </div>
+                  <a
+                    href="/datasets/rendimento.csv"
+                    download
+                    className="download-button"
+                  >
+                    <FaDownload />
 
-            </section>
+                    Rendimento (.CSV)
+                  </a>
+
+
+                  <a
+                    href="/datasets/finbra.csv"
+                    download
+                    className="download-button"
+                  >
+                    <FaDownload />
+
+                    Finanças Públicas (.CSV)
+                  </a>
+
+
+                  <a
+                    href="/datasets/agro_lavouras.csv"
+                    download
+                    className="download-button"
+                  >
+                    <FaDownload />
+
+                    Agropecuária (.CSV)
+                  </a>
+
+                </div>
+
+              </section>
+            )}
 
           </section>
 

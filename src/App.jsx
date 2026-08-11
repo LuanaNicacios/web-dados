@@ -10,6 +10,7 @@ import {
 
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/footer/Footer'
+
 import Home from './components/pages/Home'
 import Analises from './components/pages/Analises'
 import Dados from './components/pages/Dados'
@@ -35,17 +36,16 @@ const AppContent = () => {
           : 'container'
       }
     >
+
       {!paginaDeLogin && <Navbar />}
 
       <Routes>
 
-        {/* Rota pública */}
         <Route
           path="/login"
           element={<Login />}
         />
 
-        {/* Rotas protegidas */}
         <Route
           path="/"
           element={
@@ -76,11 +76,13 @@ const AppContent = () => {
         <Route
           path="/Analises/PIB"
           element={
-            <ProtectedRoute>
-              <AnaliseDetalhes />
+            <ProtectedRoute
+            perfisPermitidos={['admin']}
+    >
+            <AnaliseDetalhes />
             </ProtectedRoute>
-          }
-        />
+            }
+          />
 
         <Route
           path="/Analises/Filmes"
@@ -94,24 +96,35 @@ const AppContent = () => {
         <Route
           path="/Dados"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute
+              perfisPermitidos={[
+                'admin',
+                'analista'
+              ]}
+            >
               <Dados />
             </ProtectedRoute>
           }
         />
 
-        {/* Qualquer endereço inexistente */}
         <Route
           path="*"
-          element={<Navigate to="/" replace />}
+          element={
+            <Navigate
+              to="/"
+              replace
+            />
+          }
         />
 
       </Routes>
 
       {!paginaDeLogin && <Footer />}
+
     </div>
   )
 }
+
 
 const App = () => {
   return (

@@ -11,24 +11,79 @@ const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [usuario, setUsuario] = useState(null)
+  const [perfil, setPerfil] = useState(null)
   const [carregando, setCarregando] = useState(true)
+
+  const carregarPerfil = async (usuarioAtual) => {
+    if (!usuarioAtual) {
+      setPerfil(null)
+      return null
+    }
+
+    const { data, error } = await supabase
+      .from('perfis')
+      .select(`
+        id,
+        nome,
+        email,
+        perfil,
+        ativo
+      `)
+      .eq('id', usuarioAtual.id)
+      .maybeSingle()
+
+    if (error) {
+      console.error(
+        'Erro ao carregar perfil do usuário:',
+        error
+      )
+
+      setPerfil(null)
+
+      return null
+    }
+
+    setPerfil(data)
+
+    return data
+  }
 
   useEffect(() => {
     const carregarSessao = async () => {
-      const {
-        data: { session },
-        error
-      } = await supabase.auth.getSession()
+      try {
+        const {
+          data: { session },
+          error
+        } = await supabase.auth.getSession()
 
-      if (error) {
+        if (error) {
+          console.error(
+            'Erro ao verificar a sessão:',
+            error
+          )
+        }
+
+        const usuarioAtual =
+          session?.user ?? null
+
+        setUsuario(usuarioAtual)
+
+        if (usuarioAtual) {
+          await carregarPerfil(usuarioAtual)
+        } else {
+          setPerfil(null)
+        }
+      } catch (error) {
         console.error(
-          'Erro ao verificar a sessão:',
+          'Erro ao carregar autenticação:',
           error
         )
-      }
 
-      setUsuario(session?.user ?? null)
-      setCarregando(false)
+        setUsuario(null)
+        setPerfil(null)
+      } finally {
+        setCarregando(false)
+      }
     }
 
     carregarSessao()
@@ -36,8 +91,18 @@ export function AuthProvider({ children }) {
     const {
       data: { subscription }
     } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUsuario(session?.user ?? null)
+      async (_event, session) => {
+        const usuarioAtual =
+          session?.user ?? null
+
+        setUsuario(usuarioAtual)
+
+        if (usuarioAtual) {
+          await carregarPerfil(usuarioAtual)
+        } else {
+          setPerfil(null)
+        }
+
         setCarregando(false)
       }
     )
@@ -58,21 +123,53 @@ export function AuthProvider({ children }) {
       throw error
     }
 
+    const usuarioAtual =
+      data?.user ?? null
+
+    if (usuarioAtual) {
+      setUsuario(usuarioAtual)
+
+      await carregarPerfil(usuarioAtual)
+    }
+
     return data
   }
 
   const sair = async () => {
-    const { error } = await supabase.auth.signOut()
+    const { error } =
+      await supabase.auth.signOut({
+        scope: 'local'
+      })
 
     if (error) {
       throw error
     }
+
+    setUsuario(null)
+    setPerfil(null)
   }
+
+  const isAdmin =
+    perfil?.perfil === 'admin'
+
+  const isAnalista =
+    perfil?.perfil === 'analista'
+
+  const isVisitante =
+    perfil?.perfil === 'visitante'
 
   const value = {
     usuario,
+    perfil,
+
     carregando,
+
     autenticado: Boolean(usuario),
+
+    isAdmin,
+    isAnalista,
+    isVisitante,
+
     entrar,
     sair
   }

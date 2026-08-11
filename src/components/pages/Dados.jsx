@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fa'
 
 import { uploadArquivo } from '../../services/uploadService'
+import { useAuth } from '../../context/AuthContext'
 
 const EXTENSOES_PERMITIDAS = [
   'csv',
@@ -27,6 +28,8 @@ const EXTENSOES_PERMITIDAS = [
 const TAMANHO_MAXIMO = 10 * 1024 * 1024
 
 export default function Dados() {
+  const { isAdmin } = useAuth()
+
   const [arquivoSelecionado, setArquivoSelecionado] =
     useState(null)
 
@@ -221,6 +224,16 @@ export default function Dados() {
       return
     }
 
+    if (!isAdmin) {
+      setMensagem({
+        tipo: 'erro',
+        texto:
+          'Apenas administradores podem importar arquivos.'
+      })
+
+      return
+    }
+
     const resultadoValidacao =
       validarArquivo(arquivoSelecionado)
 
@@ -335,181 +348,201 @@ export default function Dados() {
           </h1>
 
           <p className="dados-subtitulo">
-            Envie seus arquivos ou baixe conjuntos
-            de dados disponíveis.
+            {isAdmin
+              ? 'Envie seus arquivos ou baixe conjuntos de dados disponíveis.'
+              : 'Consulte e baixe os conjuntos de dados disponíveis.'}
           </p>
         </header>
 
-        <div className="dados-grid">
+        <div
+          className={
+            isAdmin
+              ? 'dados-grid'
+              : 'dados-grid dados-grid-somente-download'
+          }
+        >
 
-          <section className="dados-card">
+          {/* =========================
+              UPLOAD
+              SOMENTE ADMIN
+          ========================= */}
 
-            <div className="card-cabecalho">
+          {isAdmin && (
+            <section className="dados-card">
 
-              <div className="card-icone">
-                <FaUpload />
-              </div>
+              <div className="card-cabecalho">
 
-              <div>
-                <h2>Enviar arquivo</h2>
-
-                <p>
-                  Selecione ou arraste um arquivo
-                  para importar os dados.
-                </p>
-              </div>
-
-            </div>
-
-            <div
-              className={
-                arrastando
-                  ? 'upload-zona arrastando'
-                  : 'upload-zona'
-              }
-              role="button"
-              tabIndex={0}
-              aria-label="Selecionar arquivo para importação"
-              aria-disabled={importando}
-              onClick={abrirSeletorDeArquivos}
-              onKeyDown={(event) => {
-                if (
-                  event.key === 'Enter' ||
-                  event.key === ' '
-                ) {
-                  event.preventDefault()
-                  abrirSeletorDeArquivos()
-                }
-              }}
-              onDragEnter={handleDragEnter}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-            >
-
-              <input
-                ref={inputArquivoRef}
-                type="file"
-                hidden
-                accept=".csv,.xlsx,.xls,.json"
-                onChange={handleFileChange}
-                disabled={importando}
-              />
-
-              <div className="upload-icone">
-                <FaUpload />
-              </div>
-
-              <p className="upload-principal">
-                Clique para selecionar
-              </p>
-
-              <p className="upload-secundario">
-                ou arraste o arquivo até esta área
-              </p>
-
-              <span className="upload-formatos">
-                CSV, XLSX, XLS ou JSON — máximo 10 MB
-              </span>
-
-            </div>
-
-            {arquivoSelecionado && (
-              <div className="arquivo-selecionado">
-
-                <div className="arquivo-selecionado-informacoes">
-
-                  <strong>
-                    Arquivo selecionado
-                  </strong>
-
-                  <span
-                    title={arquivoSelecionado.name}
-                  >
-                    {arquivoSelecionado.name}
-                  </span>
-
-                  <small>
-                    {obterExtensao(
-                      arquivoSelecionado.name
-                    ).toUpperCase()}
-
-                    {' • '}
-
-                    {formatarTamanhoArquivo(
-                      arquivoSelecionado.size
-                    )}
-                  </small>
-
+                <div className="card-icone">
+                  <FaUpload />
                 </div>
 
-                <button
-                  type="button"
-                  onClick={removerArquivoSelecionado}
-                  disabled={importando}
-                  aria-label="Remover arquivo selecionado"
-                >
-                  <FaTimes />
-                  Remover
-                </button>
+                <div>
+                  <h2>Enviar arquivo</h2>
+
+                  <p>
+                    Selecione ou arraste um arquivo
+                    para importar os dados.
+                  </p>
+                </div>
 
               </div>
-            )}
 
-            {mensagem.texto && (
               <div
                 className={
-                  `mensagem-upload mensagem-${mensagem.tipo}`
+                  arrastando
+                    ? 'upload-zona arrastando'
+                    : 'upload-zona'
                 }
-                role={
-                  mensagem.tipo === 'erro'
-                    ? 'alert'
-                    : 'status'
-                }
+                role="button"
+                tabIndex={0}
+                aria-label="Selecionar arquivo para importação"
+                aria-disabled={importando}
+                onClick={abrirSeletorDeArquivos}
+                onKeyDown={(event) => {
+                  if (
+                    event.key === 'Enter' ||
+                    event.key === ' '
+                  ) {
+                    event.preventDefault()
+                    abrirSeletorDeArquivos()
+                  }
+                }}
+                onDragEnter={handleDragEnter}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
               >
 
-                {mensagem.tipo === 'erro' && (
-                  <FaExclamationCircle />
-                )}
+                <input
+                  ref={inputArquivoRef}
+                  type="file"
+                  hidden
+                  accept=".csv,.xlsx,.xls,.json"
+                  onChange={handleFileChange}
+                  disabled={importando}
+                />
 
-                {mensagem.tipo === 'sucesso' && (
-                  <FaCheckCircle />
-                )}
+                <div className="upload-icone">
+                  <FaUpload />
+                </div>
 
-                {mensagem.tipo === 'carregando' && (
-                  <span className="upload-spinner" />
-                )}
+                <p className="upload-principal">
+                  Clique para selecionar
+                </p>
 
-                <span>{mensagem.texto}</span>
+                <p className="upload-secundario">
+                  ou arraste o arquivo até esta área
+                </p>
+
+                <span className="upload-formatos">
+                  CSV, XLSX, XLS ou JSON — máximo 10 MB
+                </span>
 
               </div>
-            )}
 
-            <button
-              type="button"
-              className="enviar-button"
-              disabled={
-                !arquivoSelecionado ||
-                importando
-              }
-              onClick={importarArquivo}
-            >
+              {arquivoSelecionado && (
+                <div className="arquivo-selecionado">
 
-              {importando ? (
-                <>
-                  <span className="button-spinner" />
-                  Importando...
-                </>
-              ) : (
-                <>
-                  <FaUpload />
-                  Importar dados
-                </>
+                  <div className="arquivo-selecionado-informacoes">
+
+                    <strong>
+                      Arquivo selecionado
+                    </strong>
+
+                    <span
+                      title={arquivoSelecionado.name}
+                    >
+                      {arquivoSelecionado.name}
+                    </span>
+
+                    <small>
+                      {obterExtensao(
+                        arquivoSelecionado.name
+                      ).toUpperCase()}
+
+                      {' • '}
+
+                      {formatarTamanhoArquivo(
+                        arquivoSelecionado.size
+                      )}
+                    </small>
+
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={removerArquivoSelecionado}
+                    disabled={importando}
+                    aria-label="Remover arquivo selecionado"
+                  >
+                    <FaTimes />
+                    Remover
+                  </button>
+
+                </div>
               )}
 
-            </button>
+              {mensagem.texto && (
+                <div
+                  className={
+                    `mensagem-upload mensagem-${mensagem.tipo}`
+                  }
+                  role={
+                    mensagem.tipo === 'erro'
+                      ? 'alert'
+                      : 'status'
+                  }
+                >
 
-          </section>
+                  {mensagem.tipo === 'erro' && (
+                    <FaExclamationCircle />
+                  )}
+
+                  {mensagem.tipo === 'sucesso' && (
+                    <FaCheckCircle />
+                  )}
+
+                  {mensagem.tipo === 'carregando' && (
+                    <span className="upload-spinner" />
+                  )}
+
+                  <span>{mensagem.texto}</span>
+
+                </div>
+              )}
+
+              <button
+                type="button"
+                className="enviar-button"
+                disabled={
+                  !arquivoSelecionado ||
+                  importando
+                }
+                onClick={importarArquivo}
+              >
+
+                {importando ? (
+                  <>
+                    <span className="button-spinner" />
+                    Importando...
+                  </>
+                ) : (
+                  <>
+                    <FaUpload />
+                    Importar dados
+                  </>
+                )}
+
+              </button>
+
+            </section>
+          )}
+
+
+          {/* =========================
+              DOWNLOAD
+              ADMIN E ANALISTA
+          ========================= */}
 
           <section className="dados-card">
 

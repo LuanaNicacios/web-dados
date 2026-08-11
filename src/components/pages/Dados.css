@@ -718,3 +718,7 @@
   transform: none;
   box-shadow: none;
 }
+.dados-grid-somente-download {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
+}
