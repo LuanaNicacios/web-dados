@@ -1,0 +1,95 @@
+.integracao-institucional {
+  width: min(1160px, calc(100% - 32px));
+  margin: 28px auto 56px;
+  color: #14345b;
+}
+.integracao-institucional__voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #145dcc;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.integracao-institucional__voltar:hover { text-decoration: underline; }
+.integracao-institucional__cabecalho { margin-bottom: 22px; }
+.integracao-institucional__etiqueta {
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #3269af;
+  font-weight: 700;
+}
+.integracao-institucional__cabecalho h1 {
+  font-size: clamp(26px, 3vw, 36px);
+  margin: 8px 0 4px;
+  line-height: 1.15;
+  color: #09366b;
+}
+.integracao-institucional__cabecalho p { color: #536b83; }
+.integracao-institucional__aviso {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 25px;
+  border: 1px solid #cbdcf1;
+  border-left: 4px solid #2776dc;
+  border-radius: 12px;
+  background: #f1f7ff;
+  color: #15539b;
+}
+.integracao-institucional__aviso h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  color: #09366b;
+}
+.integracao-institucional__aviso p { margin: 0; line-height: 1.6; color: #45617e; }
+.integracao-institucional__acoes {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.integracao-institucional__acoes span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #58708a;
+}
+.integracao-institucional__abrir {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #1b65cf;
+  border-radius: 8px;
+  padding: 11px 15px;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+.integracao-institucional__abrir:hover { background: #1151b0; }
+.integracao-institucional__moldura {
+  background: white;
+  border: 1px solid #cbdcf1;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 3px 12px #1a4c8910;
+}
+.integracao-institucional__iframe {
+  display: block;
+  width: 100%;
+  height: max(700px, 80vh);
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+}
+.integracao-institucional__nota { font-size: 12px; color: #536b83; margin: 12px 4px 2px; }
+@media(max-width: 600px) {
+  .integracao-institucional { width: calc(100% - 24px); margin-top: 18px; }
+  .integracao-institucional__aviso { padding: 18px; }
+  .integracao-institucional__iframe { height: 78vh; min-height: 520px; }
+}

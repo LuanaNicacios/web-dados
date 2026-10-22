@@ -1,0 +1,33 @@
+/* O relatório usa seu CSS original dentro do iframe isolado. */
+.previsao-receitas { width: min(1440px, 100%); }
+.previsao-receitas__voltar {
+  display: inline-block; margin-bottom: 20px; color: #1a5caf;
+  text-decoration: none; font-weight: 600;
+}
+.previsao-receitas__voltar:hover { text-decoration: underline; }
+.previsao-receitas__cabecalho {
+  display: flex; align-items: end; justify-content: space-between; gap: 16px;
+}
+.previsao-receitas__botao, .previsao-receitas__status button {
+  background: #1764cb; color: white; border: 0; border-radius: 9px;
+  padding: 11px 15px; font: inherit; font-weight: 650; cursor: pointer;
+}
+.previsao-receitas__botao:disabled { cursor: progress; opacity: .6; }
+.previsao-receitas__status {
+  background: #f0f6ff; color: #194471; border: 1px solid #c9dcf5;
+  border-radius: 12px; padding: 20px; line-height: 1.5;
+}
+.previsao-receitas__status--erro { background: #fff7f5; border-color: #f1cbc6; color: #8a2d25; }
+.previsao-receitas__status p { margin: 8px 0 14px; }
+.previsao-receitas__moldura {
+  overflow: hidden; background: white; border: 1px solid #dae5f3;
+  border-radius: 14px; box-shadow: 0 5px 24px rgba(24, 71, 120, .07);
+}
+.previsao-receitas__iframe {
+  display: block; width: 100%; height: max(780px, 85vh);
+  border: 0; background: #fff;
+}
+@media (max-width: 650px) {
+  .previsao-receitas__cabecalho { align-items: stretch; flex-direction: column; }
+  .previsao-receitas__iframe { height: 80vh; min-height: 700px; }
+}

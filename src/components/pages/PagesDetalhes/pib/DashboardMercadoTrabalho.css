@@ -1,0 +1,68 @@
+.trabalho-dashboard { display:flex; flex-direction:column; gap:15px; width:100%; min-width:0; box-sizing:border-box; padding:17px; background:#fff; color:#0d2748; border:1px solid #d5e3fa; border-radius:12px; }
+.trabalho-dashboard * { box-sizing:border-box; }
+.trabalho-topo { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
+.trabalho-topo h2 { margin:4px 0; font-size:19px; }
+.trabalho-topo p, .trabalho-grafico-card p { margin:4px 0 0; color:#627696; font-size:12px; line-height:1.5; }
+.trabalho-etiqueta { text-transform:uppercase; color:#1d5ae6; font-size:10px; font-weight:700; letter-spacing:.4px; }
+.trabalho-botao { padding:9px 12px; flex-shrink:0; align-self:center; border:1px solid #2563eb; border-radius:6px; background:#fff; color:#2563eb; font-size:12px; cursor:pointer; }
+.trabalho-botao:disabled { cursor:wait; opacity:.65; }
+.trabalho-aviso { margin:0; padding:12px; background:#f6f9ff; border-left:2px solid #90a9c9; color:#26415d; font-size:12px; line-height:1.5; }
+.trabalho-erro { color:#b91c1c; margin:0; font-size:12px; }
+.trabalho-mensagem, .trabalho-nota { color:#627696; font-size:12px; line-height:1.5; margin:0; }
+.trabalho-nota { background:#f7f9fd; padding:9px; border-radius:6px; }
+.trabalho-filtros { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; }
+.trabalho-filtros label { display:flex; flex-direction:column; gap:6px; min-width:0; font-size:12px; font-weight:600; }
+.trabalho-filtros select { background:#fff; color:#193655; padding:9px 7px; border:1px solid #d0dbee; border-radius:6px; min-width:0; width:100%; font-size:12px; }
+.trabalho-cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+.trabalho-cards > div { display:flex; flex-direction:column; gap:6px; min-width:0; padding:12px; border:1px solid #dbe5f5; border-radius:8px; }
+.trabalho-cards span { font-size:11px; color:#627696; }
+.trabalho-cards strong { color:#092248; font-size:20px; overflow-wrap:anywhere; }
+.trabalho-cards strong.trabalho-negativo { color:#b91c1c; }
+.trabalho-cards strong.trabalho-positivo { color:#047857; }
+.trabalho-grafico-card, .trabalho-tabela-card { min-width:0; padding:13px; border:1px solid #dbe5f5; border-radius:10px; }
+.trabalho-grafico-card h3, .trabalho-tabela-card h3 { font-size:15px; margin:0 0 5px; }
+.trabalho-grafico { width:100%; height:320px; margin-top:12px; min-width:0; }
+.trabalho-grafico-rolagem { width:100%; max-height:470px; overflow-y:auto; overflow-x:hidden; margin-top:12px; }
+.trabalho-grafico-barras { min-width:0; width:100%; }
+.trabalho-tabela-scroll { overflow:auto; max-height:270px; }
+.trabalho-tabela-card table { border-collapse:collapse; width:100%; font-size:12px; }
+.trabalho-tabela-card th, .trabalho-tabela-card td { padding:9px 8px; border-bottom:1px solid #e0e7f2; text-align:right; white-space:nowrap; }
+.trabalho-tabela-card th:first-child, .trabalho-tabela-card td:first-child { text-align:left; }
+.trabalho-tabela-card th { background:#fff; color:#1e3d65; position:sticky; top:0; }
+@media(max-width:720px) { .trabalho-topo { flex-direction:column; } .trabalho-botao { align-self:flex-start; } .trabalho-filtros { grid-template-columns:1fr; } .trabalho-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } .trabalho-grafico { height:280px; } }
+@media(max-width:420px) { .trabalho-dashboard { padding:12px; } .trabalho-cards strong { font-size:16px; } }
+
+
+/* Destaques analíticos: tema claro, contraste reforçado e filtros preservados. */
+.trabalho-analises {
+  border:1px solid #bcd3f5; border-radius:12px;
+  padding:18px; background:linear-gradient(180deg,#f1f6ff 0%,#ffffff 65%);
+  display:flex; flex-direction:column; gap:14px;
+}
+.trabalho-analises-cabecalho { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+.trabalho-analises-cabecalho h3 { margin:4px 0 2px; font-size:19px; line-height:1.3; color:#102f5a; }
+.trabalho-analises-cabecalho p { margin:0; color:#465d78; font-size:13px; line-height:1.5; }
+.trabalho-analises-etiqueta { color:#1d58b6; text-transform:uppercase; font-size:10px; letter-spacing:.7px; font-weight:800; }
+.trabalho-analises-periodo { background:#dfeeff; color:#154d9b; font-size:12px; font-weight:700; border-radius:99px; padding:7px 11px; white-space:nowrap; }
+.trabalho-analises-metricas { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+.trabalho-analise-metrica { min-width:0; display:flex; flex-direction:column; gap:8px; padding:13px 12px; background:#fff; border:1px solid #d1dff2; border-top:4px solid #2563eb; border-radius:9px; }
+.trabalho-analise-metrica span { color:#40546d; font-size:12px; line-height:1.4; font-weight:600; }
+.trabalho-analise-metrica strong { color:#112e54; font-size:clamp(17px,1.6vw,24px); line-height:1.2; overflow-wrap:anywhere; }
+.trabalho-analise-metrica small { color:#526c89; font-size:12px; }
+.trabalho-analise-metrica.trabalho-tom-positivo { border-top-color:#09836c; }
+.trabalho-analise-metrica.trabalho-tom-positivo strong, .trabalho-analise-metrica strong.trabalho-positivo { color:#06705a; }
+.trabalho-analise-metrica.trabalho-tom-negativo { border-top-color:#c24141; }
+.trabalho-analise-metrica.trabalho-tom-negativo strong, .trabalho-analise-metrica strong.trabalho-negativo { color:#b42336; }
+.trabalho-analises-leituras { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.trabalho-analise-leitura { background:#fff; border:1px solid #dce7f7; border-radius:10px; padding:14px; min-width:0; }
+.trabalho-analise-leitura h4 { margin:0 0 9px; color:#143c76; font-size:14px; }
+.trabalho-analise-leitura p { color:#304862; font-size:13px; line-height:1.65; margin:0 0 8px; overflow-wrap:break-word; }
+.trabalho-analise-leitura p:last-child { margin-bottom:0; }
+.trabalho-analises-ressalva { margin:0; padding:11px 13px; background:#fff8eb; border-left:3px solid #d1942a; border-radius:6px; color:#654a22; font-size:12px; line-height:1.6; }
+@media(max-width:1050px){ .trabalho-analises-metricas{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media(max-width:680px){
+  .trabalho-analises{padding:12px;}
+  .trabalho-analises-cabecalho{flex-direction:column;}
+  .trabalho-analises-leituras{grid-template-columns:1fr;}
+  .trabalho-analise-metrica strong{font-size:19px;}
+}

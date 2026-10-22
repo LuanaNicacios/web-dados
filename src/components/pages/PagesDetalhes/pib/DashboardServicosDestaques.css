@@ -1,0 +1,93 @@
+/* Destaques descritivos do setor de Serviços — tema claro */
+.servicos-dashboard .servicos-destaques {
+  background: #ffffff;
+  border: 1px solid #d6e4f7;
+  border-top: 4px solid #2563eb;
+  border-radius: 16px;
+  padding: clamp(17px, 2.3vw, 25px);
+  margin: 20px 0 24px;
+  box-shadow: 0 10px 24px rgba(22, 61, 113, 0.06);
+}
+.servicos-destaques-cabecalho h3 {
+  margin: 0 0 5px;
+  color: #123b70;
+  font-size: clamp(17px, 2vw, 21px);
+  font-weight: 750;
+}
+.servicos-destaques-cabecalho p {
+  color: #475569;
+  margin: 0 0 17px;
+  line-height: 1.5;
+  font-size: 13px;
+}
+.servicos-destaques-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.servicos-destaque-card {
+  min-width: 0;
+  border-radius: 12px;
+  border: 1px solid #d5e3f4;
+  background: #f1f6fe;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.servicos-destaque-card.positivo {
+  background: #eaf8f2;
+  border-color: #bfead6;
+}
+.servicos-destaque-card.negativo {
+  background: #fff3ee;
+  border-color: #ffd9c9;
+}
+.servicos-destaque-card .servicos-destaque-label {
+  color: #334155;
+  font-size: 12px;
+  font-weight: 650;
+}
+.servicos-destaque-card strong {
+  color: #123b70;
+  font-size: clamp(20px, 2.5vw, 27px);
+  letter-spacing: -.35px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.servicos-destaque-card.positivo strong { color: #087451; }
+.servicos-destaque-card.negativo strong { color: #a34224; }
+.servicos-destaque-card small {
+  color: #53657d;
+  line-height: 1.5;
+  font-size: 12px;
+}
+.servicos-destaques-leituras {
+  display: grid;
+  gap: 10px;
+  margin-top: 15px;
+}
+.servicos-destaques-leitura {
+  border-left: 3px solid #2563eb;
+  background: #f7faff;
+  padding: 11px 13px;
+  border-radius: 6px;
+}
+.servicos-destaques-leitura.atencao {
+  border-left-color: #b45309;
+  background: #fffbeb;
+}
+.servicos-destaques-leitura h4 {
+  margin: 0 0 5px;
+  color: #193d6b;
+  font-size: 13px;
+}
+.servicos-destaques-leitura p {
+  margin: 0;
+  color: #3e5068;
+  font-size: 13px;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .servicos-destaques-grid { grid-template-columns: 1fr; }
+}

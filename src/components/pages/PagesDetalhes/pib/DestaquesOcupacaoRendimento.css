@@ -1,0 +1,33 @@
+/* Extensão visual exclusiva para os destaques de Ocupação e Rendimento. */
+.or-analise-container { background: #fff; border: 1px solid #cbdcf0; border-radius: 14px; padding: 19px; display: flex; flex-direction: column; gap: 15px; color: #143556; }
+.or-analise-cabecalho { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.or-analise-cabecalho h3 { margin: 3px 0 8px; font-size: 19px; line-height: 1.35; color: #103e78; }
+.or-analise-cabecalho p { margin: 0; color: #475f7d; font-size: 13px; line-height: 1.6; }
+.or-analise-etiqueta { color: #2563b8; font-size: 11px; text-transform: uppercase; font-weight: 800; letter-spacing: .5px; }
+.or-analise-periodos { background: #e9f2ff; color: #1b56a1; border-radius: 999px; padding: 8px 12px; font-weight: 700; white-space: nowrap; font-size: 12px; }
+.or-analise-paineis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+.or-analise-medida { min-width: 0; border: 1px solid #c9dcf3; border-top: 4px solid #2563eb; border-radius: 11px; background: #f5f9ff; padding: 15px; }
+.or-analise-verde { background: #f1fbf7; border-color: #c7eadf; border-top-color: #0b8b70; }
+.or-analise-medida h4 { margin: 0 0 13px; color: #143d74; font-size: 15px; }
+.or-analise-verde h4 { color: #126452; }
+.or-analise-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.or-analise-grade > div { background: #fff; border: 1px solid #dce8f6; border-radius: 9px; padding: 11px; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.or-analise-grade span, .or-analise-linha .or-analise-descricao { font-size: 12px; color: #435b7a; font-weight: 650; }
+.or-analise-grade strong { color: #143d74; font-size: clamp(16px, 1.8vw, 22px); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.or-analise-grade small, .or-analise-linha small { color: #526b86; font-size: 11px; line-height: 1.5; }
+.or-analise-comparacoes { display: grid; gap: 10px; margin-top: 13px; }
+.or-analise-linha { display: grid; grid-template-columns: 1fr auto; column-gap: 10px; row-gap: 3px; border-top: 1px solid #d9e5f2; padding-top: 10px; align-items: baseline; }
+.or-analise-linha small { grid-column: 1 / -1; }
+.or-analise-linha strong { font-size: 14px; font-variant-numeric: tabular-nums; }
+.or-analise-positivo { color: #087d61; }
+.or-analise-negativo { color: #b42338; }
+.or-analise-neutro { color: #475569; }
+.or-analise-avisos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.or-analise-aviso { border-radius: 9px; padding: 13px 14px; border-left: 4px solid #2563eb; background: #f1f6ff; min-width: 0; }
+.or-analise-aviso strong { font-size: 13px; color: #153e70; }
+.or-analise-aviso p { font-size: 12px; color: #415a76; line-height: 1.6; margin: 6px 0 0; }
+.or-analise-atencao { border-left-color: #d97706; background: #fffbeb; }
+.or-analise-atencao strong { color: #92530b; }
+.or-analise-metodologia { border-left-color: #64748b; background: #f8fafc; }
+@media (max-width: 950px) { .or-analise-paineis, .or-analise-avisos { grid-template-columns: 1fr; } }
+@media (max-width: 440px) { .or-analise-container { padding: 12px; } .or-analise-grade { grid-template-columns: 1fr; } .or-analise-linha { grid-template-columns: 1fr; } }

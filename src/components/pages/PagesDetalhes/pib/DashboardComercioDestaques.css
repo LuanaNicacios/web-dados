@@ -1,0 +1,87 @@
+/* Estilos locais para destaques: nao altera CSS dos outros dashboards. */
+.comercio-dashboard .comercio-painel-destaques {
+  padding: 22px;
+  margin: 22px 0;
+  border: 1px solid #bcd5f5;
+  border-top: 4px solid #2563eb;
+  border-radius: 16px;
+  background: linear-gradient(140deg, #f4f9ff 0%, #ffffff 70%);
+  box-shadow: 0 10px 28px rgba(20, 73, 141, 0.06);
+}
+.comercio-destaques-cabecalho h3 {
+  margin: 5px 0 6px;
+  color: #10386a;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.25;
+}
+.comercio-destaques-cabecalho p {
+  margin: 0 0 20px;
+  color: #50647d;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.comercio-destaques-kicker {
+  color: #1d5fbd;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+.comercio-destaques-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.comercio-destaque {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #dbe7f7;
+  border-left: 4px solid #2563eb;
+  border-radius: 12px;
+  background: #fff;
+}
+.comercio-destaque--positivo { border-left-color: #078564; background: #f3fcf8; }
+.comercio-destaque--negativo { border-left-color: #c45239; background: #fff7f4; }
+.comercio-destaque--neutro { border-left-color: #718299; background: #f8fafc; }
+.comercio-destaque--azul { border-left-color: #2563eb; background: #f8fbff; }
+.comercio-destaque-titulo {
+  color: #355675;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.comercio-destaque-valor {
+  margin: 8px 0;
+  color: #123b70;
+  font-size: clamp(17px, 1.8vw, 22px);
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.comercio-destaque--positivo .comercio-destaque-valor { color: #07684e; }
+.comercio-destaque--negativo .comercio-destaque-valor { color: #a33c2b; }
+.comercio-destaque p {
+  margin: 0 0 10px;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.comercio-destaque small {
+  color: #5b7087;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.comercio-destaques-nota {
+  margin: 17px 0 0;
+  padding: 13px 14px;
+  border: 1px solid #cddff5;
+  border-radius: 9px;
+  background: #eaf3ff;
+  color: #284b74;
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (max-width: 740px) {
+  .comercio-dashboard .comercio-painel-destaques { padding: 16px; }
+  .comercio-destaques-grid { grid-template-columns: 1fr; }
+  .comercio-destaque { padding: 15px; }
+}

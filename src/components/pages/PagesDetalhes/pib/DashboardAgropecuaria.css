@@ -1,0 +1,22 @@
+.agro-integrado { width: 100%; min-width: 0; }
+.agro-subabas {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  background: #f0f5ff; padding: 10px; margin: 0 0 15px;
+  border: 1px solid #cbdcf7; border-radius: 13px;
+}
+.agro-subaba {
+  appearance: none; font: inherit; font-size: 13px; font-weight: 700;
+  border: 1px solid #bfd3f4; background: #fff; color: #1b4f8b;
+  padding: 11px 16px; border-radius: 9px; cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.agro-subaba:hover { background: #e2eeff; }
+.agro-subaba-ativa, .agro-subaba-ativa:hover {
+  background: #185bcc; border-color: #185bcc; color: #fff;
+}
+.agro-subaba:focus-visible { outline: 3px solid #f1ad38; outline-offset: 2px; }
+.agro-painel { min-width: 0; }
+@media (max-width: 620px) {
+  .agro-subabas { display: grid; grid-template-columns: 1fr; }
+  .agro-subaba { text-align: left; }
+}

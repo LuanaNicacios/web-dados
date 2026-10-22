@@ -1,0 +1,7 @@
+.caged-abas-layout { width: 100%; min-width: 0; display: grid; gap: 16px; }
+.caged-subabas { display: flex; flex-wrap: wrap; gap: 9px; padding-bottom: 12px; border-bottom: 1px solid #d3e2f6; }
+.caged-subaba { border: 1px solid #b9cee9; border-radius: 10px; padding: 10px 14px; background: #f3f8ff; color: #225184; font-size: 13px; font-weight: 700; cursor: pointer; }
+.caged-subaba:hover { background: #e3efff; }
+.caged-subaba.ativa { color: white; background: #2563eb; border-color: #2563eb; box-shadow: 0 4px 12px rgba(37,99,235,.14); }
+.caged-subaba:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+@media (max-width: 540px) { .caged-subaba { width: 100%; } }

@@ -1,21 +1,25 @@
 import React, { useState } from 'react'
+
 import {
   useNavigate,
   useSearchParams
 } from 'react-router-dom'
 
-import './Analises.css'
-
 import {
   FaSearch,
-  FaUsers,
   FaDatabase,
-  FaFilm,
+  FaChartLine,
   FaChevronRight
 } from 'react-icons/fa'
 
+import { useAuth } from '../../context/AuthContext'
+
+import './Analises.css'
+
 const Analises = () => {
   const navigate = useNavigate()
+
+  const { isAdmin, isAnalista } = useAuth()
 
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -23,59 +27,55 @@ const Analises = () => {
 
   const [search, setSearch] = useState(buscaRecebida)
 
+  // Somente análises reais do portal.
+  // O PIB continua restrito aos administradores.
   const analises = [
-    {
-      id: 1,
-      titulo: 'Dados População',
-      descricao:
-        'Indicadores e informações sobre a população.',
-      categoria: 'População',
-      ferramenta: 'Power BI',
-      palavrasChave:
-        'habitantes pessoas demografia censo pernambuco',
-      rota: '/Analises/Populacao',
-      icon: <FaUsers />
-    },
-    {
-      id: 2,
-      titulo: 'Dados PIB',
-      descricao:
-        'Análises sobre o PIB (Produto Interno Bruto) do estado de Pernambuco.',
-      categoria: 'PIB',
-      ferramenta: 'Power BI',
-      palavrasChave:
-        'economia produto interno bruto renda pernambuco',
-      rota: '/Analises/PIB',
-      icon: <FaDatabase />
-    },
-    {
-      id: 3,
-      titulo: 'Dados Filme',
-      descricao:
-        'Estatísticas e indicadores do mercado cinematográfico.',
-      categoria: 'Filme',
-      ferramenta: 'Power BI',
-      palavrasChave:
-        'cinema filmes imdb bilheteria atores audiovisual',
-      rota: '/Analises/Filmes',
-      icon: <FaFilm />
-    }
+    ...(isAdmin
+      ? [
+          {
+            id: 'pib',
+            titulo: 'Dados PIB',
+            descricao:
+              'Indicadores econômicos de Pernambuco, incluindo agropecuária, comércio, serviços, mercado de trabalho, ocupação, rendimento, inflação, saúde e seguros.',
+            categoria: 'Indicadores econômicos',
+            ferramenta: 'Dashboard interativo',
+            palavrasChave:
+              'pib economia pernambuco agropecuaria emprego saude seguros',
+            rota: '/Analises/PIB',
+            icon: <FaDatabase />
+          }
+        ]
+      : []),
+
+...((isAdmin || isAnalista)
+  ? [
+      {
+        id: 'previsao-receitas',
+        titulo: 'Previsão de Receitas Municipais',
+        descricao:
+          'Relatório de previsão de receitas dos municípios de Pernambuco, com comparação de modelos, testes retroativos e avaliação da qualidade dos dados.',
+        categoria: 'Receitas municipais',
+        ferramenta: 'Relatório interativo',
+        palavrasChave:
+          'previsao receitas municipais municipios modelos arrecadacao pernambuco',
+        rota: '/Dados/Previsao-Receitas',
+        icon: <FaChartLine />
+      }
+    ]
+  : [])
   ]
 
-  const normalizarTexto = (texto = '') => {
-    return String(texto)
+  const normalizarTexto = (texto = '') =>
+    String(texto)
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
       .trim()
-  }
 
   const textoPesquisa = normalizarTexto(search)
 
   const analisesFiltradas = analises.filter((analise) => {
-    if (!textoPesquisa) {
-      return true
-    }
+    if (!textoPesquisa) return true
 
     const conteudoPesquisavel = normalizarTexto(`
       ${analise.titulo}
@@ -94,9 +94,7 @@ const Analises = () => {
     setSearch(novoTexto)
 
     if (novoTexto.trim()) {
-      setSearchParams({
-        busca: novoTexto
-      })
+      setSearchParams({ busca: novoTexto })
     } else {
       setSearchParams({})
     }
@@ -135,21 +133,18 @@ const Analises = () => {
 
   return (
     <main className="analises-page">
-
       <section className="analises-hero">
-
         <header className="analises-header">
-
           <h1 className="analises-title">
             Análises
           </h1>
 
           <p className="analises-subtitle">
-            Explore análises, indicadores e estudos de dados.
+            Explore os indicadores econômicos e relatórios
+            disponíveis no portal da SEPLAG.
           </p>
 
           <div className="analises-search">
-
             <FaSearch
               className="search-icon-left"
               aria-hidden="true"
@@ -157,7 +152,7 @@ const Analises = () => {
 
             <input
               type="search"
-              placeholder="Buscar por nome, letra, categoria ou descrição..."
+              placeholder="Buscar por nome, categoria ou descrição..."
               value={search}
               onChange={handleInputChange}
               onKeyDown={handleSearchKeyDown}
@@ -172,16 +167,13 @@ const Analises = () => {
             >
               <FaSearch aria-hidden="true" />
             </button>
-
           </div>
-
         </header>
 
         <section
           className="analises-lista"
           aria-label="Lista de análises disponíveis"
         >
-
           {analisesFiltradas.length > 0 ? (
             analisesFiltradas.map((analise) => (
               <article
@@ -195,7 +187,6 @@ const Analises = () => {
                   handleCardKeyDown(event, analise)
                 }
               >
-
                 <div
                   className="analise-icon"
                   aria-hidden="true"
@@ -204,27 +195,14 @@ const Analises = () => {
                 </div>
 
                 <div className="analise-content">
+                  <h2>{analise.titulo}</h2>
 
-                  <h2>
-                    {analise.titulo}
-                  </h2>
-
-                  <p>
-                    {analise.descricao}
-                  </p>
+                  <p>{analise.descricao}</p>
 
                   <div className="analise-tags">
-
-                    <span>
-                      {analise.categoria}
-                    </span>
-
-                    <span>
-                      {analise.ferramenta}
-                    </span>
-
+                    <span>{analise.categoria}</span>
+                    <span>{analise.ferramenta}</span>
                   </div>
-
                 </div>
 
                 <button
@@ -238,15 +216,11 @@ const Analises = () => {
                 >
                   <FaChevronRight aria-hidden="true" />
                 </button>
-
               </article>
             ))
           ) : (
             <div className="analises-empty">
-
-              <h2>
-                Nenhuma análise encontrada
-              </h2>
+              <h2>Nenhuma análise encontrada</h2>
 
               <p>
                 Não encontramos resultados para “{search}”.
@@ -259,14 +233,10 @@ const Analises = () => {
               >
                 Limpar pesquisa
               </button>
-
             </div>
           )}
-
         </section>
-
       </section>
-
     </main>
   )
 }

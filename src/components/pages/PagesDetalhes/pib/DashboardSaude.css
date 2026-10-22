@@ -1,0 +1,44 @@
+/* Estilos isolados: não alteram as seis análises existentes. */
+.saude-dashboard { width:100%; min-width:0; box-sizing:border-box; padding:21px; display:flex; flex-direction:column; gap:17px; border:1px solid #c9dcf2; border-radius:15px; background:#fff; box-shadow:0 8px 24px rgba(15,60,110,.07); color:#17365c; }
+.saude-dashboard * { box-sizing:border-box; }
+.saude-topo { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }
+.saude-topo h2 { margin:5px 0 7px; font-size:clamp(19px,2vw,24px); color:#103d76; line-height:1.25; }
+.saude-topo p, .saude-bloco-titulo p { margin:0; color:#4a6079; font-size:13px; line-height:1.55; }
+.saude-etiqueta { color:#205eb5; text-transform:uppercase; font-weight:800; font-size:11px; letter-spacing:.4px; }
+.saude-atualizar { flex-shrink:0; border:1px solid #2563eb; border-radius:8px; padding:10px 13px; color:#1553b0; background:#fff; cursor:pointer; font-size:12px; font-weight:700; }
+.saude-atualizar:hover { background:#eff6ff; }
+.saude-atualizar:disabled { opacity:.55; cursor:wait; }
+.saude-aviso { margin:0; padding:13px 15px; border-left:4px solid #2a69c9; border-radius:8px; background:#edf5ff; color:#24496c; font-size:12px; line-height:1.6; }
+.saude-erro { margin:0; padding:12px; border:1px solid #fecdd3; background:#fff1f2; color:#991b1b; border-radius:8px; font-size:13px; }
+.saude-vazio { padding:15px; margin:0; font-size:13px; color:#5e7189; }
+.saude-abas { display:flex; flex-wrap:wrap; gap:8px; padding-bottom:12px; border-bottom:1px solid #d6e4f3; }
+.saude-abas button { background:#f5f8fe; color:#23446b; border:1px solid #cfdef0; border-radius:8px; padding:10px 15px; font-size:13px; font-weight:700; cursor:pointer; }
+.saude-abas button.ativa { background:#195dbb; border-color:#195dbb; color:#fff; }
+.saude-bloco-titulo h3 { margin:0 0 4px; font-size:17px; color:#113d76; }
+.saude-filtros { display:flex; flex-direction:column; gap:7px; align-items:flex-start; }
+.saude-filtros label { color:#294869; font-size:12px; font-weight:700; }
+.saude-filtros select { min-width:190px; padding:10px 13px; border:1px solid #b8cbe2; background:#fff; border-radius:8px; color:#183b65; font-size:13px; }
+.saude-kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:11px; }
+.saude-kpi { min-width:0; padding:14px; border-radius:11px; border:1px solid #d2e2f6; border-top:3px solid #286ed3; background:#f3f8ff; display:flex; flex-direction:column; gap:7px; }
+.saude-kpi.verde { border-top-color:#0d9488; background:#eefaf5; }
+.saude-kpi.roxo { border-top-color:#6d5ae5; background:#f5f3ff; }
+.saude-kpi span { font-size:12px; color:#385777; line-height:1.4; }
+.saude-kpi strong { font-size:clamp(16px,2vw,23px); font-variant-numeric:tabular-nums; color:#103d76; overflow-wrap:anywhere; }
+.saude-kpi small { font-size:11px; color:#526e8a; line-height:1.5; }
+.saude-painel { border:1px solid #d1e0f1; background:#fff; padding:17px; border-radius:12px; min-width:0; }
+.saude-painel h3, .saude-destaque h3 { margin:0 0 7px; color:#113d76; font-size:16px; }
+.saude-painel p { margin:0 0 11px; font-size:12px; line-height:1.55; color:#526a83; }
+.saude-grafico { height:320px; width:100%; min-width:0; }
+.saude-destaque { border:1px solid #cadff6; border-left:4px solid #2563eb; background:#f6f9ff; padding:17px; border-radius:11px; }
+.saude-destaque p { margin:8px 0 0; line-height:1.7; font-size:13px; color:#2e506f; }
+.saude-destaque strong { color:#123d71; }
+.saude-tabela-scroll { max-height:280px; overflow:auto; }
+.saude-tabela-scroll table { width:100%; border-collapse:collapse; font-size:12px; color:#26435f; }
+.saude-tabela-scroll th, .saude-tabela-scroll td { padding:10px; text-align:right; border-bottom:1px solid #e1eaf4; white-space:nowrap; }
+.saude-tabela-scroll th:first-child, .saude-tabela-scroll td:first-child { text-align:left; }
+.saude-tabela-scroll th { position:sticky; top:0; background:#edf5ff; color:#123d71; }
+.saude-tabela-scroll tr:nth-child(even) { background:#fafcff; }
+.saude-dashboard button:focus-visible, .saude-dashboard select:focus-visible { outline:3px solid #93c5fd; outline-offset:2px; }
+@media(max-width:1050px) { .saude-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) { .saude-dashboard { padding:14px; } .saude-topo { flex-direction:column; } .saude-grafico { height:285px; } }
+@media(max-width:390px) { .saude-kpis { grid-template-columns:1fr; } }

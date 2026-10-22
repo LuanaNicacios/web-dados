@@ -1,0 +1,40 @@
+/* Destaques exclusivos do IPCA, sem alterar os outros dashboards. */
+.ipca-destaques {
+  padding: 19px;
+  border: 1px solid #bad3f4;
+  border-left: 4px solid #2464c9;
+  border-radius: 13px;
+  background: linear-gradient(155deg, #f3f8ff 0%, #ffffff 64%);
+  color: #17385b;
+}
+.ipca-destaques * { box-sizing: border-box; }
+.ipca-destaques-kicker { font-weight: 800; font-size: 11px; letter-spacing: .055em; color: #2257a0; }
+.ipca-destaques h3 { margin: 5px 0 7px; font-size: clamp(17px, 1.7vw, 21px); line-height: 1.35; color: #103967; }
+.ipca-destaques-cabecalho p { margin: 0; color: #48637f; font-size: 13px; line-height: 1.55; }
+.ipca-destaques-grade { margin-top: 16px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 11px; }
+.ipca-destaque-card { min-width: 0; border-radius: 10px; border: 1px solid #d4e2f4; border-top: 4px solid #2563eb; background: #fff; padding: 13px 12px; display: flex; flex-direction: column; gap: 8px; }
+.ipca-destaque-card span { color: #355675; font-weight: 700; font-size: 12px; }
+.ipca-destaque-card strong { font-size: clamp(18px, 2vw, 24px); line-height: 1.25; color: #103967; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.ipca-destaque-card small { color: #5b7087; font-size: 11px; line-height: 1.5; }
+.ipca-destaque-turquesa { border-top-color: #0891b2; }
+.ipca-destaque-roxo { border-top-color: #7c3aed; }
+.ipca-destaque-verde { border-top-color: #0f766e; }
+.ipca-destaques-blocos { margin-top: 13px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ipca-destaques-bloco, .ipca-destaques-componentes { background: #fff; border: 1px solid #d4e2f4; border-radius: 10px; padding: 14px; min-width: 0; }
+.ipca-destaques h4 { margin: 0 0 10px; color: #123f77; font-size: 14px; }
+.ipca-destaques-bloco p { margin: 7px 0; font-size: 13px; line-height: 1.55; color: #314f6f; }
+.ipca-destaques-bloco strong { color: #173c69; }
+.ipca-destaques-observacao { margin: 10px 0 0; font-size: 11px !important; line-height: 1.55; color: #657a91 !important; }
+.ipca-destaques-componentes { margin-top: 12px; }
+.ipca-destaques-lista { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+.ipca-destaques-lista > div { display: flex; flex-direction: column; gap: 5px; padding: 10px 11px; background: #f5f9ff; border-radius: 8px; border: 1px solid #e0eafa; }
+.ipca-destaques-lista span { font-size: 12px; line-height: 1.45; color: #3c5774; overflow-wrap: anywhere; }
+.ipca-destaques-lista strong { font-size: 17px; font-variant-numeric: tabular-nums; color: #0e3c70; }
+.ipca-destaques-alerta { margin-top: 12px; background: #fff9ed; color: #83510d; border: 1px solid #f1d7a5; border-radius: 9px; padding: 12px 14px; }
+.ipca-destaques-alerta strong { font-size: 13px; }
+.ipca-destaques-alerta p { margin: 5px 0 0; font-size: 12px; line-height: 1.6; }
+.ipca-destaques-rodape { border-top: 1px solid #d8e6f7; padding-top: 12px; margin: 14px 0 0; font-size: 12px; line-height: 1.6; color: #526d89; }
+.ipca-destaques-vazio { margin: 14px 0; font-size: 13px; color: #516b88; }
+@media (max-width: 1150px) { .ipca-destaques-grade { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 650px) { .ipca-destaques { padding: 13px; } .ipca-destaques-blocos,.ipca-destaques-lista { grid-template-columns: 1fr; } }
+@media (max-width: 390px) { .ipca-destaques-grade { grid-template-columns: 1fr; } }

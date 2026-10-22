@@ -1,0 +1,66 @@
+.lavouras-dashboard { 
+    margin: 0 0 28px; 
+    padding: 24px; 
+    border: 1px solid #dbe4f0; 
+    border-radius: 14px; 
+    background: #fff; 
+    color: #1e293b; }
+    
+.lavouras-topo h2 { margin: 8px 0; font-size: 1.45rem; }
+
+.lavouras-topo p, .lavouras-grafico-card p { margin: 4px 0 12px; color: #64748b; }
+
+.lavouras-etiqueta { display: inline-block; font-size: .75rem; font-weight: 700; color: #1d4ed8; letter-spacing: .04em; text-transform: uppercase; }
+
+.lavouras-aviso { margin: 16px 0; padding: 12px 14px; background: #f8fafc; border-left: 3px solid #94a3b8; font-size: .86rem; line-height: 1.5; }
+
+.lavouras-importacao { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding: 18px; background: #f8fafc; border: 1px dashed #a5b4c9; border-radius: 10px; }
+
+.lavouras-importacao p { margin: 6px 0; font-size: .9rem; }
+.lavouras-importacao small { display: block; max-width: 520px; color: #64748b; line-height: 1.45; }
+
+.lavouras-acoes { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.lavouras-botao, .lavouras-botao-secundario { display: inline-flex; justify-content: center; align-items: center; padding: 10px 14px; border-radius: 8px; border: 1px solid #2563eb; cursor: pointer; font: inherit; font-size: .9rem; font-weight: 600; }
+
+.lavouras-botao { background: #2563eb; color: white; }
+.lavouras-botao input { display: none; }
+
+.lavouras-botao-secundario { background: #fff; color: #1d4ed8; }
+
+.lavouras-erro { color: #b91c1c; font-weight: 600; }
+
+.lavouras-arquivo { color: #475569; font-size: .85rem; overflow-wrap: anywhere; }
+
+.lavouras-filtros { display: flex; gap: 16px; margin: 22px 0 16px; flex-wrap: wrap; }
+
+.lavouras-filtros label { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; font-weight: 600; font-size: .87rem; }
+
+.lavouras-filtros select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; color: #1e293b; }
+
+.lavouras-indicadores { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.lavouras-indicadores > div { display: flex; flex-direction: column; min-width: 0; gap: 7px; padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; }
+
+.lavouras-indicadores span { font-size: .8rem; color: #64748b; }
+
+.lavouras-indicadores strong { font-size: 1.3rem; overflow-wrap: anywhere; }
+
+.lavouras-indicadores small { color: #64748b; }
+
+.lavouras-grafico-card, .lavouras-tabela-card { padding: 16px; margin-top: 16px; border: 1px solid #e2e8f0; border-radius: 12px; }
+
+.lavouras-grafico-card h3, .lavouras-tabela-card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+
+.lavouras-grafico { height: 310px; width: 100%; min-width: 0; }
+
+.lavouras-tabela-rolagem { max-height: 280px; overflow: auto; }
+
+.lavouras-tabela-card table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+
+.lavouras-tabela-card th, .lavouras-tabela-card td { text-align: left; border-bottom: 1px solid #e2e8f0; padding: 10px; }
+
+.lavouras-tabela-card th { position: sticky; top: 0; background: #fff; }
+
+.lavouras-vazio { text-align: center; padding: 24px 12px; color: #64748b; }
+
+@media (max-width: 740px) { .lavouras-dashboard { padding: 15px; } .lavouras-indicadores { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lavouras-grafico { height: 260px; } }

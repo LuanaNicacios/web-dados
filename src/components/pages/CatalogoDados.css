@@ -1,0 +1,59 @@
+.catalogo-dados {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 36px 24px 72px;
+  color: #172b4d;
+}
+.catalogo-dados__cabecalho { margin-bottom: 26px; }
+.catalogo-dados__etiqueta {
+  display: inline-block; padding: 6px 11px;
+  border-radius: 999px; color: #185ea6;
+  background: #e7f1ff; font-size: .78rem; font-weight: 700;
+  margin-bottom: 12px;
+}
+.catalogo-dados h1 { margin: 0 0 6px; font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.catalogo-dados__cabecalho p { margin: 0; color: #53647a; }
+.catalogo-dados__grade {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 315px), 1fr));
+  gap: 18px;
+}
+.catalogo-dados__card {
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 12px; min-height: 230px;
+  padding: 25px; border-radius: 16px;
+  background: #fff; border: 1px solid #dbe4f0;
+  box-shadow: 0 5px 18px rgba(30, 65, 115, .07);
+  color: inherit; text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+a.catalogo-dados__card:hover {
+  transform: translateY(-3px); border-color: #7eb3f5;
+  box-shadow: 0 10px 24px rgba(30, 65, 115, .12);
+}
+a.catalogo-dados__card:focus-visible,
+.catalogo-dados__administracao a:focus-visible {
+  outline: 3px solid #2c75d2; outline-offset: 3px;
+}
+.catalogo-dados__icone {
+  display: grid; place-items: center; width: 47px; height: 47px;
+  border-radius: 12px; background: #e8f1ff; color: #195cad;
+  font-size: 1.25rem;
+}
+.catalogo-dados__card h2 { margin: 0; font-size: 1.2rem; line-height: 1.3; }
+.catalogo-dados__card p { margin: 0; color: #52677f; line-height: 1.55; }
+.catalogo-dados__acao { margin-top: auto; color: #195cad; font-weight: 700; }
+.catalogo-dados__card--restrito { background: #f8fafc; }
+.catalogo-dados__card--restrito .catalogo-dados__acao { color: #64748b; }
+.catalogo-dados__administracao {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  margin-top: 26px; padding: 16px 20px; border: 1px solid #dbe4f0;
+  border-radius: 12px; background: #f8fbff; font-size: .93rem;
+}
+.catalogo-dados__administracao a {
+  display: inline-flex; align-items: center; gap: 9px;
+  margin-left: auto; color: #195cad; font-weight: 700; text-decoration: none;
+}
+@media (max-width: 600px) {
+  .catalogo-dados { padding: 24px 15px 44px; }
+  .catalogo-dados__administracao a { margin-left: 0; }
+}
